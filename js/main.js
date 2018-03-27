@@ -16,7 +16,27 @@ const KeyCode = {
 };
 
 /**
+ * Container for all screens
+ * @type {Node}
+ */
+const mainScreensContainer = document.querySelector(`main.central`);
+
+/**
  * An array of the templates with screens
  * @type {Array}
  */
 const screens = [...document.querySelectorAll(`template`)];
+
+const clearContainerContent = () => {
+  mainScreensContainer.innerHTML = ``;
+};
+
+const showScreen = (number) => {
+  const currentScreen = screens.find((screen) => screen.id === SCREENS_ORDER[number]);
+  const currentScreenContent = currentScreen.content.cloneNode(true);
+
+  clearContainerContent();
+  mainScreensContainer.appendChild(currentScreenContent);
+};
+
+showScreen(0);

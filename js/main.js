@@ -1,5 +1,5 @@
 /**
- * Describe required order of the screens
+ * Description of the required order of screens
  * @const
  * @readonly
  * @type {Array}

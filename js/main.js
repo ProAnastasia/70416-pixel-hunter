@@ -47,11 +47,16 @@ const clearContainerContent = () => {
  * @param {Number} number
  */
 const showScreen = (number) => {
+  if (number < 0 || screens.length <= number) {
+    return;
+  }
+
   const currentScreen = screens.find((screen) => screen.id === SCREENS_ORDER[number]);
   const currentScreenContent = currentScreen.content.cloneNode(true);
 
   clearContainerContent();
   mainScreensContainer.appendChild(currentScreenContent);
+  currentScreenIndex = number;
 };
 
 /**
@@ -66,16 +71,10 @@ const onKeyPressHandler = ({altKey, keyCode}) => {
 
   switch (keyCode) {
     case KeyCode.LEFT_ARROW:
-      if (currentScreenIndex > 0) {
-        --currentScreenIndex;
-        showScreen(currentScreenIndex);
-      }
+      showScreen(currentScreenIndex - 1);
       break;
     case KeyCode.RIGHT_ARROW:
-      if (currentScreenIndex < screens.length - 1) {
-        ++currentScreenIndex;
-        showScreen(currentScreenIndex);
-      }
+      showScreen(currentScreenIndex + 1);
       break;
   }
 };

@@ -1,4 +1,5 @@
 import showScreen from '../modules/showScreen';
+import greeting from './greeting';
 import levelFirst from './levelFirst';
 import {createElementFromTemplate} from '../utils';
 
@@ -38,9 +39,14 @@ const screenLayout = `<header class="header">
                       </footer>`;
 
 const screenElement = createElementFromTemplate(screenLayout);
+const backButton = screenElement.querySelector(`.back`);
 const form = screenElement.querySelector(`.rules__form`);
 const formInputName = form.querySelector(`.rules__input`);
 const formButton = form.querySelector(`.rules__button`);
+
+backButton.addEventListener(`click`, () => {
+  showScreen(greeting);
+});
 
 formInputName.addEventListener(`input`, (event) => {
   formButton.disabled = event.target.value === ``;

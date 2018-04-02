@@ -1,4 +1,5 @@
 import showScreen from '../modules/showScreen';
+import greeting from './greeting';
 import levelThird from './levelThird';
 import {createElementFromTemplate} from '../utils';
 
@@ -58,6 +59,7 @@ const screenLayout = `<header class="header">
                       </footer>`;
 
 const screenElement = createElementFromTemplate(screenLayout);
+const backButton = screenElement.querySelector(`.back`);
 const answerButtons = [...screenElement.querySelectorAll(`.game__answer`)];
 const buttonOnClickHandler = () => {
   showScreen(levelThird);
@@ -65,6 +67,10 @@ const buttonOnClickHandler = () => {
 
 answerButtons.forEach((answerButton) => {
   answerButton.addEventListener(`click`, buttonOnClickHandler);
+});
+
+backButton.addEventListener(`click`, () => {
+  showScreen(greeting);
 });
 
 export default screenElement;

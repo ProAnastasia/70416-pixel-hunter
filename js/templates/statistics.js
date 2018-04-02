@@ -1,3 +1,5 @@
+import showScreen from '../modules/showScreen';
+import greeting from './greeting';
 import {createElementFromTemplate} from '../utils';
 
 const screenLayout = `<header class="header">
@@ -120,5 +122,11 @@ const screenLayout = `<header class="header">
                       </footer>`;
 
 const screenElement = createElementFromTemplate(screenLayout);
+const backButton = screenElement.querySelector(`.back`);
+
+backButton.addEventListener(`click`, () => {
+  showScreen(greeting);
+});
+
 
 export default screenElement;

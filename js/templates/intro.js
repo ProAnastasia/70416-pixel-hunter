@@ -1,3 +1,5 @@
+import showScreen from '../modules/showScreen';
+import greeting from './greeting';
 import {createElementFromTemplate} from '../utils';
 
 const screenLayout = `<div id="main" class="central__content">
@@ -18,5 +20,10 @@ const screenLayout = `<div id="main" class="central__content">
                       </footer>`;
 
 const screenElement = createElementFromTemplate(screenLayout);
+const toggleScreenButton = screenElement.querySelector(`.intro__asterisk`);
+
+toggleScreenButton.addEventListener(`click`, () => {
+  showScreen(greeting);
+});
 
 export default screenElement;

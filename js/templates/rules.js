@@ -1,3 +1,5 @@
+import showScreen from '../modules/showScreen';
+import levelFirst from './levelFirst';
 import {createElementFromTemplate} from '../utils';
 
 const screenLayout = `<header class="header">
@@ -36,5 +38,18 @@ const screenLayout = `<header class="header">
                       </footer>`;
 
 const screenElement = createElementFromTemplate(screenLayout);
+const form = screenElement.querySelector(`.rules__form`);
+const formInputName = form.querySelector(`.rules__input`);
+const formButton = form.querySelector(`.rules__button`);
+
+formInputName.addEventListener(`input`, (event) => {
+  formButton.disabled = event.target.value === ``;
+});
+
+form.addEventListener(`submit`, (event) => {
+  event.preventDefault();
+
+  showScreen(levelFirst);
+});
 
 export default screenElement;

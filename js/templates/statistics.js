@@ -128,5 +128,4 @@ backButton.addEventListener(`click`, () => {
   showScreen(greeting);
 });
 
-
 export default screenElement;

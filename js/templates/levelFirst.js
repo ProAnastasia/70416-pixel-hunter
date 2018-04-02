@@ -1,3 +1,5 @@
+import showScreen from '../modules/showScreen';
+import levelSecond from './levelSecond';
 import {createElementFromTemplate} from '../utils';
 
 const screenLayout = `<header class="header">
@@ -67,5 +69,17 @@ const screenLayout = `<header class="header">
                       </footer>`;
 
 const screenElement = createElementFromTemplate(screenLayout);
+const radioButtons = [...screenElement.querySelectorAll(`input[type=radio]`)];
+const radioOnChangeHandler = () => {
+  const selectedRadioButtons = radioButtons.filter((radioButton) => radioButton.checked === true);
+
+  if (selectedRadioButtons.length === 2) {
+    showScreen(levelSecond);
+  }
+};
+
+radioButtons.forEach((radioButton) => {
+  radioButton.addEventListener(`change`, radioOnChangeHandler);
+});
 
 export default screenElement;

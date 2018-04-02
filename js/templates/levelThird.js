@@ -1,3 +1,5 @@
+import showScreen from '../modules/showScreen';
+import statistics from './statistics';
 import {createElementFromTemplate} from '../utils';
 
 const screenLayout = `<header class="header">
@@ -54,5 +56,13 @@ const screenLayout = `<header class="header">
                       </footer>`;
 
 const screenElement = createElementFromTemplate(screenLayout);
+const answerButtons = [...screenElement.querySelectorAll(`.game__option`)];
+const buttonOnClickHandler = () => {
+  showScreen(statistics);
+};
+
+answerButtons.forEach((answerButton) => {
+  answerButton.addEventListener(`click`, buttonOnClickHandler);
+});
 
 export default screenElement;

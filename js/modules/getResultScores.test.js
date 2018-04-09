@@ -1,8 +1,6 @@
 import {assert} from 'chai';
 import {getResultScores} from './getResultScores';
 
-
-
 describe(`Check score counter`, () => {
   it(`Should return return an error if answersNum type is not appropriate (Array)`, () => {
     assert.throws(() => getResultScores({}, 1));

@@ -14,6 +14,11 @@ const fillArrayWithAnswers = (length, answer) => {
 const averageAnswers = fillArrayWithAnswers(10, {value: true, time: 12});
 const fastAnswers = fillArrayWithAnswers(10, {value: true, time: 8});
 const slowAnswers = fillArrayWithAnswers(10, {value: true, time: 28});
+const differentAnswers = [
+  ...fillArrayWithAnswers(2, {value: true, time: 5}),
+  ...fillArrayWithAnswers(5, {value: true, time: 11}),
+  ...fillArrayWithAnswers(3, {value: true, time: 22}),
+];
 
 describe(`Check score counter`, () => {
   it(`should return return an error if answersNum type is not appropriate (Array)`, () => {
@@ -38,7 +43,11 @@ describe(`Check score counter`, () => {
     assert.equal(getResultScores(fastAnswers, 3), 1650);
   });
 
-  it(`should return 650 scores if user answers are fast and lives are full`, () => {
+  it(`should return 650 scores if user answers are slow and lives are full`, () => {
     assert.equal(getResultScores(slowAnswers, 3), 650);
+  });
+
+  it(`should return 1100 scores if user answers are fast/slow and lives are full`, () => {
+    assert.equal(getResultScores(differentAnswers, 3), 1100);
   });
 });

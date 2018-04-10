@@ -12,8 +12,8 @@ const INITIAL_GAME_STATE = {
  * @enum {number}
  */
 const gameParams = {
-  QUESTION_TIME_FAST: 5,
-  QUESTION_TIME_SLOW: 15,
+  QUESTION_TIME_FAST: 10,
+  QUESTION_TIME_SLOW: 20,
   QUESTION_TOTAL_NUM: 10,
   LIVES_MAX_NUM: 3
 };
@@ -52,7 +52,7 @@ const countScores = (answers, lives) => {
     }
   });
 
-  return scores * lives;
+  return scores + (lives * gamePoints.LIVE_VALUE);
 };
 
 /**

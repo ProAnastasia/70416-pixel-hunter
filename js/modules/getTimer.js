@@ -1,5 +1,5 @@
 /**
- *  Get timer and handle changes
+ * Get timer and handle changes
  * @param {Number} time
  * @return {Object}
  */

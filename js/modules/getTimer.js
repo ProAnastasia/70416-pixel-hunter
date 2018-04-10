@@ -1,7 +1,7 @@
 /**
  *  Get timer and handle changes
- * @param {Number} timer
- * @returns {Object}
+ * @param {Number} time
+ * @return {Object}
  */
 export const getTimer = (time) => {
   if (typeof time !== `number`) {
@@ -14,7 +14,7 @@ export const getTimer = (time) => {
 
   return {
     currentTime: time,
-    tick: function () {
+    tick() {
       if (this.currentTime === 0) {
         return `No more time`;
       }

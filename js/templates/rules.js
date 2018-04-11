@@ -1,6 +1,6 @@
-import showScreen from '../modules/showScreen';
+import showScreen from '../modules/show-screen';
 import greeting from './greeting';
-import levelFirst from './levelFirst';
+import levelFirst from './level-first';
 import {createElementFromTemplate} from '../utils';
 
 const screenLayout = `<header class="header">

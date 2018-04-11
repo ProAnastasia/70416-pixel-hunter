@@ -1,5 +1,5 @@
 import {assert} from 'chai';
-import {getResultScores} from './getResultScores';
+import {getResultScores} from './get-result-scores';
 
 /**
  * Fill array with answers objects

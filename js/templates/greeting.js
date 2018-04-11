@@ -1,4 +1,4 @@
-import showScreen from '../modules/showScreen';
+import showScreen from '../modules/show-screen';
 import rules from './rules';
 import {createElementFromTemplate} from '../utils';
 

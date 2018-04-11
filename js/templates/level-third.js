@@ -1,6 +1,6 @@
-import showScreen from '../modules/showScreen';
+import showScreen from '../modules/show-screen';
 import greeting from './greeting';
-import levelSecond from './levelSecond';
+import statistics from './statistics';
 import {createElementFromTemplate} from '../utils';
 
 const screenLayout = `<header class="header">
@@ -18,29 +18,16 @@ const screenLayout = `<header class="header">
                         </div>
                       </header>
                       <div class="game">
-                        <p class="game__task">Угадайте для каждого изображения фото или рисунок?</p>
-                        <form class="game__content">
+                        <p class="game__task">Найдите рисунок среди изображений</p>
+                        <form class="game__content  game__content--triple">
                           <div class="game__option">
-                            <img src="http://placehold.it/468x458" alt="Option 1" width="468" height="458">
-                            <label class="game__answer game__answer--photo">
-                              <input name="question1" type="radio" value="photo">
-                              <span>Фото</span>
-                            </label>
-                            <label class="game__answer game__answer--paint">
-                              <input name="question1" type="radio" value="paint">
-                              <span>Рисунок</span>
-                            </label>
+                            <img src="http://placehold.it/304x455" alt="Option 1" width="304" height="455">
+                          </div>
+                          <div class="game__option  game__option--selected">
+                            <img src="http://placehold.it/304x455" alt="Option 1" width="304" height="455">
                           </div>
                           <div class="game__option">
-                            <img src="http://placehold.it/468x458" alt="Option 2" width="468" height="458">
-                            <label class="game__answer  game__answer--photo">
-                              <input name="question2" type="radio" value="photo">
-                              <span>Фото</span>
-                            </label>
-                            <label class="game__answer  game__answer--paint">
-                              <input name="question2" type="radio" value="paint">
-                              <span>Рисунок</span>
-                            </label>
+                            <img src="http://placehold.it/304x455" alt="Option 1" width="304" height="455">
                           </div>
                         </form>
                         <div class="stats">
@@ -49,11 +36,11 @@ const screenLayout = `<header class="header">
                             <li class="stats__result stats__result--slow"></li>
                             <li class="stats__result stats__result--fast"></li>
                             <li class="stats__result stats__result--correct"></li>
+                            <li class="stats__result stats__result--wrong"></li>
                             <li class="stats__result stats__result--unknown"></li>
+                            <li class="stats__result stats__result--slow"></li>
                             <li class="stats__result stats__result--unknown"></li>
-                            <li class="stats__result stats__result--unknown"></li>
-                            <li class="stats__result stats__result--unknown"></li>
-                            <li class="stats__result stats__result--unknown"></li>
+                            <li class="stats__result stats__result--fast"></li>
                             <li class="stats__result stats__result--unknown"></li>
                           </ul>
                         </div>
@@ -61,7 +48,7 @@ const screenLayout = `<header class="header">
                       <footer class="footer">
                         <a href="https://htmlacademy.ru" class="social-link social-link--academy">HTML Academy</a>
                         <span class="footer__made-in">Сделано в <a href="https://htmlacademy.ru" class="footer__link">HTML Academy</a> &copy; 2016</span>
-                         <div class="footer__social-links">
+                        <div class="footer__social-links">
                           <a href="https://twitter.com/htmlacademy_ru" class="social-link  social-link--tw">Твиттер</a>
                           <a href="https://www.instagram.com/htmlacademy/" class="social-link  social-link--ins">Инстаграм</a>
                           <a href="https://www.facebook.com/htmlacademy" class="social-link  social-link--fb">Фэйсбук</a>
@@ -71,17 +58,13 @@ const screenLayout = `<header class="header">
 
 const screenElement = createElementFromTemplate(screenLayout);
 const backButton = screenElement.querySelector(`.back`);
-const radioButtons = [...screenElement.querySelectorAll(`input[type=radio]`)];
-const radioOnChangeHandler = () => {
-  const selectedRadioButtons = radioButtons.filter((radioButton) => radioButton.checked === true);
-
-  if (selectedRadioButtons.length === 2) {
-    showScreen(levelSecond);
-  }
+const answerButtons = [...screenElement.querySelectorAll(`.game__option`)];
+const buttonOnClickHandler = () => {
+  showScreen(statistics);
 };
 
-radioButtons.forEach((radioButton) => {
-  radioButton.addEventListener(`change`, radioOnChangeHandler);
+answerButtons.forEach((answerButton) => {
+  answerButton.addEventListener(`click`, buttonOnClickHandler);
 });
 
 backButton.addEventListener(`click`, () => {

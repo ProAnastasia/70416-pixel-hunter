@@ -1,5 +1,5 @@
 import assert from 'assert';
-import {getTimer} from './getTimer';
+import {getTimer} from './get-timer';
 
 describe(`Check timer`, () => {
   it(`should return an error if time type is not appropriate (Number) or negative values were used`, () => {

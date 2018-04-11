@@ -11,10 +11,10 @@ const INITIAL_GAME_STATE = {
  * @readonly
  * @enum {number}
  */
-const gameParams = {
+const GameParam = {
   QUESTION_TIME_FAST: 10,
   QUESTION_TIME_SLOW: 20,
-  QUESTION_TOTAL_NUM: 10,
+  QUESTIONS_TOTAL_NUM: 10,
   LIVES_MAX_NUM: 3
 };
 /**
@@ -22,7 +22,7 @@ const gameParams = {
  * @readonly
  * @enum {number}
  */
-const gamePoints = {
+const GamePoint = {
   ANSWER_CORRECT: 100,
   ANSWER_QUICK: 50,
   ANSWER_SLOW: 50,
@@ -40,19 +40,19 @@ const countScores = (answers, lives) => {
 
   answers.forEach((answer) => {
     if (answer.value) {
-      scores += gamePoints.ANSWER_CORRECT;
+      scores += GamePoint.ANSWER_CORRECT;
 
-      if (answer.time <= gameParams.QUESTION_TIME_FAST) {
-        scores += gamePoints.ANSWER_QUICK;
+      if (answer.time <= GameParam.QUESTION_TIME_FAST) {
+        scores += GamePoint.ANSWER_QUICK;
       }
 
-      if (answer.time > gameParams.QUESTION_TIME_SLOW) {
-        scores -= gamePoints.ANSWER_SLOW;
+      if (answer.time > GameParam.QUESTION_TIME_SLOW) {
+        scores -= GamePoint.ANSWER_SLOW;
       }
     }
   });
 
-  return scores + (lives * gamePoints.LIVE_VALUE);
+  return scores + (lives * GamePoint.LIVE_VALUE);
 };
 
 /**
@@ -62,7 +62,7 @@ const countScores = (answers, lives) => {
  * @return {Number}
  */
 export const getResultScores = (answers, livesNum) => {
-  if (answers.length < gameParams.QUESTION_TOTAL_NUM) {
+  if (answers.length < GameParam.QUESTIONS_TOTAL_NUM) {
     return -1;
   }
 
@@ -78,7 +78,7 @@ export const getResultScores = (answers, livesNum) => {
     throw new Error(`livesNum should be only positive number`);
   }
 
-  if (livesNum > gameParams.LIVES_MAX_NUM) {
+  if (livesNum > GameParam.LIVES_MAX_NUM) {
     throw new Error(`livesNum should be less than maximum lives number`);
   }
 

@@ -1,7 +1,7 @@
+import {createElementFromTemplate} from '../utils';
 import showScreen from '../modules/show-screen';
 import footer from './footer';
 import greeting from './greeting';
-import {createElementFromTemplate} from '../utils';
 
 const screenLayout = `<div id="main" class="central__content">
                         <div id="intro" class="intro">

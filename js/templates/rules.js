@@ -1,18 +1,11 @@
 import {createElementFromTemplate} from '../utils';
 import showScreen from '../modules/show-screen';
+import renderHeader from './header';
 import footer from './footer';
 import greeting from './greeting';
 import levelFirst from './level-first';
 
-const screenLayout = `<header class="header">
-                        <div class="header__back">
-                          <button class="back">
-                            <img src="img/arrow_left.svg" width="45" height="45" alt="Back">
-                            <img src="img/logo_small.svg" width="101" height="44">
-                          </button>
-                        </div>
-                      </header>
-                      <div class="rules">
+const screenLayout = `<div class="rules">
                         <h1 class="rules__title">Правила</h1>
                         <p class="rules__description">Угадай 10 раз для каждого изображения фото <img
                           src="img/photo_icon.png" width="16" height="16"> или рисунок <img
@@ -29,7 +22,7 @@ const screenLayout = `<header class="header">
                         </form>
                       </div>`;
 
-const screenElement = createElementFromTemplate(`${screenLayout}${footer}`);
+const screenElement = createElementFromTemplate(`${renderHeader(true)}${screenLayout}${footer}`);
 const backButton = screenElement.querySelector(`.back`);
 const form = screenElement.querySelector(`.rules__form`);
 const formInputName = form.querySelector(`.rules__input`);

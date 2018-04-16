@@ -11,7 +11,7 @@ export const createElementFromTemplate = (template) => {
   return container;
 };
 /**
- * Generate whole random number with min and max inclusively
+ * Generate whole random number with min and max
  * @param {Number} min
  * @param {Number} max
  * @return {Number}

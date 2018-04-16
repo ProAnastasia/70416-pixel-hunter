@@ -1,8 +1,11 @@
-import {createElementFromTemplate} from '../utils';
+import {createElementFromTemplate, getRandomElement} from '../utils';
+import {renderLevel} from '../modules/render-level';
 import showScreen from '../modules/show-screen';
 import renderHeader from './header';
 import footer from './footer';
 import greeting from './greeting';
+
+import levelTypes from '../data/level-types';
 
 const screenLayout = `<div class="rules">
                         <h1 class="rules__title">Правила</h1>
@@ -36,9 +39,11 @@ formInputName.addEventListener(`input`, (event) => {
 });
 
 form.addEventListener(`submit`, (event) => {
+  const generatedLevelType = getRandomElement(levelTypes).type;
+
   event.preventDefault();
 
-  showScreen(levelFirst);
+  renderLevel(generatedLevelType);
 });
 
 export default screenElement;

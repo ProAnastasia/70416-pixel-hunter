@@ -7,27 +7,16 @@ import footer from './footer';
 import greeting from './greeting';
 
 const screenLayout = `<div class="game">
-                        <p class="game__task">Угадайте для каждого изображения фото или рисунок?</p>
-                        <form class="game__content">
+                        <p class="game__task">Угадай, фото или рисунок?</p>
+                        <form class="game__content  game__content--wide">
                           <div class="game__option">
-                            <img src="http://placehold.it/468x458" alt="Option 1" width="468" height="458">
-                            <label class="game__answer game__answer--photo">
+                            <img src="http://placehold.it/705x455" alt="Option 1" width="705" height="455">
+                            <label class="game__answer  game__answer--photo">
                               <input name="question1" type="radio" value="photo">
                               <span>Фото</span>
                             </label>
-                            <label class="game__answer game__answer--paint">
+                            <label class="game__answer  game__answer--wide  game__answer--paint">
                               <input name="question1" type="radio" value="paint">
-                              <span>Рисунок</span>
-                            </label>
-                          </div>
-                          <div class="game__option">
-                            <img src="http://placehold.it/468x458" alt="Option 2" width="468" height="458">
-                            <label class="game__answer  game__answer--photo">
-                              <input name="question2" type="radio" value="photo">
-                              <span>Фото</span>
-                            </label>
-                            <label class="game__answer  game__answer--paint">
-                              <input name="question2" type="radio" value="paint">
                               <span>Рисунок</span>
                             </label>
                           </div>
@@ -39,17 +28,13 @@ const screenLayout = `<div class="game">
 
 const screenElement = createElementFromTemplate(`${renderHeader(true, true)}${screenLayout}${footer}`);
 const backButton = screenElement.querySelector(`.back`);
-const radioButtons = [...screenElement.querySelectorAll(`input[type=radio]`)];
-const radioOnChangeHandler = () => {
-  const selectedRadioButtons = radioButtons.filter((radioButton) => radioButton.checked === true);
-
-  if (selectedRadioButtons.length === 2) {
-
-  }
+const answerButtons = [...screenElement.querySelectorAll(`.game__answer`)];
+const buttonOnClickHandler = () => {
+  // showScreen(levelThird);
 };
 
-radioButtons.forEach((radioButton) => {
-  radioButton.addEventListener(`change`, radioOnChangeHandler);
+answerButtons.forEach((answerButton) => {
+  answerButton.addEventListener(`click`, buttonOnClickHandler);
 });
 
 backButton.addEventListener(`click`, () => {

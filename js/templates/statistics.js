@@ -1,17 +1,10 @@
 import {createElementFromTemplate} from '../utils';
+import renderHeader from './header';
 import showScreen from '../modules/show-screen';
 import footer from './footer';
 import greeting from './greeting';
 
-const screenLayout = `<header class="header">
-                        <div class="header__back">
-                          <button class="back">
-                            <img src="img/arrow_left.svg" width="45" height="45" alt="Back">
-                            <img src="img/logo_small.svg" width="101" height="44">
-                          </button>
-                        </div>
-                      </header>
-                      <div class="result">
+const screenLayout = `<div class="result">
                         <h1>Победа!</h1>
                         <table class="result__table">
                           <tr>
@@ -112,7 +105,7 @@ const screenLayout = `<header class="header">
                         </table>
                       </div>`;
 
-const screenElement = createElementFromTemplate(`${screenLayout}${footer}`);
+const screenElement = createElementFromTemplate(`${renderHeader(true, false)}${screenLayout}${footer}`);
 const backButton = screenElement.querySelector(`.back`);
 
 backButton.addEventListener(`click`, () => {

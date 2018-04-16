@@ -22,7 +22,7 @@ const screenLayout = `<div class="rules">
                         </form>
                       </div>`;
 
-const screenElement = createElementFromTemplate(`${renderHeader(true)}${screenLayout}${footer}`);
+const screenElement = createElementFromTemplate(`${renderHeader(true, false)}${screenLayout}${footer}`);
 const backButton = screenElement.querySelector(`.back`);
 const form = screenElement.querySelector(`.rules__form`);
 const formInputName = form.querySelector(`.rules__input`);

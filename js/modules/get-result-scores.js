@@ -1,40 +1,5 @@
-/**
- * Initial game state description
- * @type {Object}
- */
-const INITIAL_GAME_STATE = {
-  totalPoints: 0,
-  lives: 3
-};
-/**
- * Enum for game param
- * @readonly
- * @enum {number}
- */
-const GameParam = {
-  QUESTION_TIME_FAST: 10,
-  QUESTION_TIME_SLOW: 20,
-  QUESTIONS_TOTAL_NUM: 10,
-  LIVES_MAX_NUM: 3
-};
-/**
- * Enum for game points
- * @readonly
- * @enum {number}
- */
-const GamePoint = {
-  ANSWER_CORRECT: 100,
-  ANSWER_QUICK: 50,
-  ANSWER_SLOW: 50,
-  LIVE_VALUE: 50,
-  INITIAL_SCORE: 1150
-};
-/**
- * Count scores logic
- * @param {Array} answers
- * @param {Number} lives
- * @return {number}
- */
+import {INITIAL_GAME_STATE, GameParam, GamePoint} from '../data/constants';
+
 const countScores = (answers, lives) => {
   let scores = INITIAL_GAME_STATE.totalPoints;
 

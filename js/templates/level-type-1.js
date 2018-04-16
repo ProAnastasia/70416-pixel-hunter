@@ -1,9 +1,10 @@
 import {createElementFromTemplate} from '../utils';
+import getGameState from '../modules/get-game-state';
 import renderHeader from './header';
 import showScreen from '../modules/show-screen';
+import statisticsBar from './statistics-bar';
 import footer from './footer';
 import greeting from './greeting';
-import levelSecond from './level-second';
 
 const screenLayout = `<div class="game">
                         <p class="game__task">Угадайте для каждого изображения фото или рисунок?</p>
@@ -31,6 +32,9 @@ const screenLayout = `<div class="game">
                             </label>
                           </div>
                         </form>
+                        <div class="stats">
+                          ${statisticsBar(getGameState.answers)}
+                        </div>
                       </div>`;
 
 const screenElement = createElementFromTemplate(`${renderHeader(true, true)}${screenLayout}${footer}`);
@@ -40,7 +44,7 @@ const radioOnChangeHandler = () => {
   const selectedRadioButtons = radioButtons.filter((radioButton) => radioButton.checked === true);
 
   if (selectedRadioButtons.length === 2) {
-    showScreen(levelSecond);
+
   }
 };
 

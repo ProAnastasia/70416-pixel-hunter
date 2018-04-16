@@ -3,7 +3,6 @@ import showScreen from '../modules/show-screen';
 import renderHeader from './header';
 import footer from './footer';
 import greeting from './greeting';
-import levelFirst from './level-first';
 
 const screenLayout = `<div class="rules">
                         <h1 class="rules__title">Правила</h1>

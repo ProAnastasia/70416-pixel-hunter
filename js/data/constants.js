@@ -1,13 +1,4 @@
 /**
- * Initial game state description
- * @type {Object}
- */
-export const INITIAL_GAME_STATE = {
-  totalPoints: 0,
-  lives: 3,
-  timer: 30
-};
-/**
  * Enum for game param
  * @readonly
  * @enum {number}
@@ -29,6 +20,17 @@ export const GamePoint = {
   ANSWER_SLOW: 50,
   LIVE_VALUE: 50,
   INITIAL_SCORE: 1150
+};
+/**
+ * Initial game state description
+ * @type {Object}
+ */
+export const INITIAL_GAME_STATE = {
+  totalPoints: 0,
+  lives: 3,
+  timer: 30,
+  answers: new Array(GameParam.QUESTIONS_TOTAL_NUM).fill(`unknown`),
+  questionNum: 0
 };
 /**
  * Enum for icons sources

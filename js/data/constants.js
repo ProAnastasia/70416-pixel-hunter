@@ -41,3 +41,15 @@ export const Icon = {
   LIFE_FULL: `<img src="img/heart__full.svg" class="game__heart" alt="Life" width="32" height="32">`,
   LIFE_EMPTY: `<img src="img/heart__empty.svg" class="game__heart" alt="Life" width="32" height="32">`
 };
+/**
+ * Enum for nswers types
+ * @readonly
+ * @enum {string}
+ */
+export const AnswerType = {
+  CORRECT: `correct`,
+  WRONG: `wrong`,
+  FAST: `fast`,
+  SLOW: `slow`,
+  UNKNOWN: `unknown`
+};

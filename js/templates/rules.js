@@ -6,6 +6,7 @@ import footer from './footer';
 import greeting from './greeting';
 
 import levelTypes from '../data/level-types';
+import gameState from '../modules/get-game-state';
 
 const screenLayout = `<div class="rules">
                         <h1 class="rules__title">Правила</h1>
@@ -43,7 +44,7 @@ form.addEventListener(`submit`, (event) => {
 
   event.preventDefault();
 
-  renderLevel(generatedLevelType);
+  renderLevel(generatedLevelType, gameState);
 });
 
 export default screenElement;

@@ -18,7 +18,7 @@ export const GamePoint = {
   ANSWER_CORRECT: 100,
   ANSWER_QUICK: 50,
   ANSWER_SLOW: 50,
-  LIVE_VALUE: 50,
+  LIFE_VALUE: 50,
   INITIAL_SCORE: 1150
 };
 /**

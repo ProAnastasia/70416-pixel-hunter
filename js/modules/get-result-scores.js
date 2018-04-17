@@ -1,23 +1,25 @@
-import {INITIAL_GAME_STATE, GameParam, GamePoint} from '../data/constants';
+import {GameParam, GamePoint, AnswerType} from '../data/constants';
 
 const countScores = (answers, lives) => {
-  let scores = INITIAL_GAME_STATE.totalPoints;
+  let scores = 0;
 
   answers.forEach((answer) => {
-    if (answer.value) {
-      scores += GamePoint.ANSWER_CORRECT;
-
-      if (answer.time <= GameParam.QUESTION_TIME_FAST) {
-        scores += GamePoint.ANSWER_QUICK;
-      }
-
-      if (answer.time > GameParam.QUESTION_TIME_SLOW) {
-        scores -= GamePoint.ANSWER_SLOW;
-      }
+    switch (answer) {
+      case AnswerType.ANSWER_CORRECT:
+        scores += GamePoint.ANSWER_CORRECT;
+        break;
+      case AnswerType.FAST:
+        scores += (GamePoint.ANSWER_QUICK + GamePoint.ANSWER_QUICK);
+        break;
+      case AnswerType.SLOW:
+        scores += (GamePoint.ANSWER_CORRECT - GamePoint.ANSWER_SLOW);
+        break;
+      default:
+        break;
     }
   });
 
-  return scores + (lives * GamePoint.LIVE_VALUE);
+  return scores + (lives * GamePoint.LIFE_VALUE);
 };
 
 /**

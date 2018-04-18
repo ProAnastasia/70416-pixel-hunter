@@ -10,7 +10,7 @@ import greeting from './greeting';
 import levelTypes from '../data/level-types';
 
 export const levelTypeThree = (gameState) => {
-  const randomImages = generateRandomImages(3);
+  const randomImages = generateRandomImages(3, `paint`);
   const screenLayout = `<div class="game">
                           <p class="game__task">Найдите рисунок среди изображений</p>
                           <form class="game__content  game__content--triple">

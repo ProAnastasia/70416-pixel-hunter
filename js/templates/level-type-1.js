@@ -10,7 +10,7 @@ import greeting from './greeting';
 import levelTypes from '../data/level-types';
 
 export const levelTypeOne = (gameState) => {
-  const randomImages = generateRandomImages(1);
+  const randomImages = generateRandomImages(1, ``);
   const screenLayout = `<div class="game">
                           <p class="game__task">Угадай, фото или рисунок?</p>
                           <form class="game__content  game__content--wide">
@@ -32,25 +32,20 @@ export const levelTypeOne = (gameState) => {
                         </div>`;
   const screenElement = createElementFromTemplate(`${renderHeader(true, true)}${screenLayout}${footer}`);
   const backButton = screenElement.querySelector(`.back`);
-  const answerButtons = [...screenElement.querySelectorAll(`.game__answer`)];
+  const answerButtons = [...screenElement.querySelectorAll(`input[type="radio"]`)];
   const imageType = randomImages[0].type;
+
   const buttonOnClickHandler = (e) => {
-    const checkedInput = screenElement.querySelector(`input[type="radio"]:checked`);
+    const isAnswerCorrect = e.target.value === imageType;
+    const answerType = checkAnswerTime(50);
+    const generatedLevelType = getRandomElement(levelTypes).type;
 
-    e.stopPropagation();
-
-    if (checkedInput && checkedInput.value !== null) {
-      const isAnswerCorrect = checkedInput.value === imageType;
-      const answerType = checkAnswerTime(50);
-      const generatedLevelType = getRandomElement(levelTypes).type;
-
-      changeGameState(isAnswerCorrect, answerType);
-      renderLevel(generatedLevelType, gameState);
-    }
+    changeGameState(isAnswerCorrect, answerType);
+    renderLevel(generatedLevelType, gameState);
   };
 
   answerButtons.forEach((answerButton) => {
-    answerButton.addEventListener(`click`, buttonOnClickHandler, false);
+    answerButton.addEventListener(`change`, buttonOnClickHandler, false);
   });
 
   backButton.addEventListener(`click`, () => {

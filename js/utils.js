@@ -22,30 +22,65 @@ export const generateRandomNumber = (min, max) => Math.floor(Math.random() * (ma
 export const getRandomElement = (array) => {
   return array[generateRandomNumber(0, array.length)];
 };
+
+const generateRandomPicture = (type) => {
+  const imagesData = type ? images.filter((image) => image.type === type) : images;
+
+  return imagesData[generateRandomNumber(0, imagesData.length)];
+};
+
+const generateTwoPictures = (type) => {
+  let generatedArray = [];
+  let randomPicture = generateRandomPicture(type);
+
+  while (generatedArray.length < 2) {
+    randomPicture = generateRandomPicture(type);
+
+    const isAnswerInArray = generatedArray.filter((picture) => picture.src === randomPicture.src).length;
+
+    if (!isAnswerInArray) {
+      generatedArray.push(randomPicture);
+    }
+  }
+
+  return generatedArray;
+};
+
+const generateThreeImages = (type) => {
+  const reversedType = type === `paint` ? `photo` : `paint`;
+  const generatedOnePicture = generateRandomPicture(type);
+  const generatedRestPictures = generateTwoPictures(reversedType);
+
+  return [generatedOnePicture, ...generatedRestPictures];
+};
+
+const shuffleElements = (array) => {
+  const compareRandom = () => {
+    return Math.random() - 0.5;
+  };
+
+  return array.sort(compareRandom);
+};
 /**
  * Generate array of unique images
  * @param {Number} length
+ * @param {String} imageType
  * @return {Array}
  */
-export const generateRandomImages = (length) => {
-  const numbersArray = [];
-  let counter = 0;
+export const generateRandomImages = (length, imageType) => {
+  let selectedImages = [];
 
-  if (length === 1) {
-    return [images[generateRandomNumber(0, 1)]];
+  switch (length) {
+    case 1:
+      selectedImages = [generateRandomPicture()];
+      break;
+    case 2:
+      selectedImages = generateTwoPictures();
+      break;
+    case 3:
+      selectedImages = shuffleElements(generateThreeImages(imageType));
+      break;
   }
 
-  while (counter < length) {
-    const randomNumber = generateRandomNumber(0, images.length);
-
-    if (numbersArray.indexOf(randomNumber) === -1) {
-      numbersArray.push(randomNumber);
-    } else {
-      numbersArray.push(generateRandomNumber(0, images.length)); // instead of recursion
-    }
-
-    ++counter;
-  }
-
-  return numbersArray.map((number) => images[number]);
+  return selectedImages;
 };

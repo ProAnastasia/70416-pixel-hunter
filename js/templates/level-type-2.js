@@ -10,8 +10,7 @@ import greeting from './greeting';
 import levelTypes from '../data/level-types';
 
 export const levelTypeTwo = (gameState) => {
-  const randomImages = generateRandomImages(2);
-
+  const randomImages = generateRandomImages(2, ``);
   const screenLayout = `<div class="game">
                           <p class="game__task">Угадайте для каждого изображения фото или рисунок?</p>
                           <form class="game__content">
@@ -49,7 +48,8 @@ export const levelTypeTwo = (gameState) => {
     const selectedRadioButtons = radioButtons.filter((radioButton) => radioButton.checked === true);
 
     if (selectedRadioButtons.length === 2) {
-      const areAnswersCorrect = selectedRadioButtons[0].value === randomImages.type && selectedRadioButtons[1].value === randomImages.type;
+      const areAnswersCorrect = selectedRadioButtons[0].value === randomImages[0].type &&
+                                selectedRadioButtons[1].value === randomImages[1].type;
       const answerType = checkAnswerTime(10);
       const generatedLevelType = getRandomElement(levelTypes).type;
 

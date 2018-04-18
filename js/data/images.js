@@ -2,17 +2,17 @@ export default [
   // People
   {
     src: `https://k42.kn3.net/CF42609C8.jpg`,
-    type: `painting`
+    type: `paint`
   },
   // Animals
   {
     src: `https://k42.kn3.net/D2F0370D6.jpg`,
-    type: `painting`
+    type: `paint`
   },
   // Nature
   {
     src: `https://k32.kn3.net/5C7060EC5.jpg`,
-    type: `painting`
+    type: `paint`
   },
   // People
   {

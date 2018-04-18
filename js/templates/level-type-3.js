@@ -36,7 +36,7 @@ export const levelTypeThree = (gameState) => {
     if (e.target.classList.contains(`game__option`)) {
       const imageSrc = e.target.querySelector(`img`).src;
       const image = randomImages.filter((elem) => elem.src === imageSrc)[0];
-      const isCorrectAnswer = image.type === `painting`;
+      const isCorrectAnswer = image.type === `paint`;
       const generatedLevelType = getRandomElement(levelTypes).type;
       const answerType = checkAnswerTime(20);
 

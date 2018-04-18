@@ -90,8 +90,9 @@ export const statisticsScreen = (gameState) => {
   const screenElement = createElementFromTemplate(`${renderHeader(true, false)}${screenLayout}${footer}`);
   const backButton = screenElement.querySelector(`.back`);
 
+
   backButton.addEventListener(`click`, () => {
-    showScreen(greeting);
+    showScreen(greeting(gameState));
   });
 
   return screenElement;

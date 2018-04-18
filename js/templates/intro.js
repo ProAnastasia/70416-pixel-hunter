@@ -14,7 +14,7 @@ const screenElement = createElementFromTemplate(`${screenLayout}${footer}`);
 const toggleScreenButton = screenElement.querySelector(`.intro__asterisk`);
 
 toggleScreenButton.addEventListener(`click`, () => {
-  showScreen(greeting);
+  showScreen(greeting());
 });
 
 export default screenElement;

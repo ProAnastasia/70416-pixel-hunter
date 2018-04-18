@@ -34,8 +34,10 @@ export const levelTypeOne = (gameState) => {
   const backButton = screenElement.querySelector(`.back`);
   const answerButtons = [...screenElement.querySelectorAll(`.game__answer`)];
   const imageType = randomImages[0].type;
-  const buttonOnClickHandler = () => {
+  const buttonOnClickHandler = (e) => {
     const checkedInput = screenElement.querySelector(`input[type="radio"]:checked`);
+
+    e.stopPropagation();
 
     if (checkedInput && checkedInput.value !== null) {
       const isAnswerCorrect = checkedInput.value === imageType;
@@ -52,7 +54,7 @@ export const levelTypeOne = (gameState) => {
   });
 
   backButton.addEventListener(`click`, () => {
-    showScreen(greeting);
+    showScreen(greeting());
   });
 
   return screenElement;

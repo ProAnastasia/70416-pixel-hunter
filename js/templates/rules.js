@@ -32,7 +32,7 @@ const formInputName = form.querySelector(`.rules__input`);
 const formButton = form.querySelector(`.rules__button`);
 
 backButton.addEventListener(`click`, () => {
-  showScreen(greeting);
+  showScreen(greeting());
 });
 
 formInputName.addEventListener(`input`, (event) => {
@@ -45,6 +45,7 @@ form.addEventListener(`submit`, (event) => {
   event.preventDefault();
 
   renderLevel(generatedLevelType, gameState);
+  formInputName.value = ``;
 });
 
 export default screenElement;

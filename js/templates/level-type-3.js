@@ -50,7 +50,7 @@ export const levelTypeThree = (gameState) => {
   });
 
   backButton.addEventListener(`click`, () => {
-    showScreen(greeting);
+    showScreen(greeting());
   });
 
   return screenElement;

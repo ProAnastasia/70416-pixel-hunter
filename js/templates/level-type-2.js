@@ -50,7 +50,7 @@ export const levelTypeTwo = (gameState) => {
 
     if (selectedRadioButtons.length === 2) {
       const areAnswersCorrect = selectedRadioButtons[0].value === randomImages.type && selectedRadioButtons[1].value === randomImages.type;
-      const answerType = checkAnswerTime(40);
+      const answerType = checkAnswerTime(10);
       const generatedLevelType = getRandomElement(levelTypes).type;
 
       changeGameState(areAnswersCorrect, answerType);
@@ -63,7 +63,7 @@ export const levelTypeTwo = (gameState) => {
   });
 
   backButton.addEventListener(`click`, () => {
-    showScreen(greeting);
+    showScreen(greeting());
   });
 
   return screenElement;

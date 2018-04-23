@@ -5,7 +5,6 @@ import {renderLevel} from '../modules/render-level';
 import changeGameState from '../modules/change-game-state';
 
 import LevelTypeOneView from '../view/level-type-1-view';
-
 import levelTypes from '../data/level-types';
 
 export const levelTypeOne = (gameState) => {

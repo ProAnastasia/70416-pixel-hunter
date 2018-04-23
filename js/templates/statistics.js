@@ -1,4 +1,4 @@
-import {createElementFromTemplate} from '../utils';
+import {createElementFromTemplate} from '../utils/utils';
 import renderHeader from './header';
 import showScreen from '../modules/show-screen';
 import getStatistics from '../templates/statistics-bar';

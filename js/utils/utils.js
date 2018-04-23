@@ -1,4 +1,4 @@
-import images from './data/images';
+import images from '../data/images';
 /**
  * Get template of the layout from string
  * @param {String} template
@@ -84,3 +84,4 @@ export const generateRandomImages = (length, imageType) => {
 
   return selectedImages;
 };
+

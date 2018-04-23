@@ -1,4 +1,4 @@
-import {createElementFromTemplate} from '../utils';
+import {createElementFromTemplate} from '../utils/utils';
 
 export default class AbstractView {
   constructor() {

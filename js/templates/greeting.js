@@ -1,11 +1,9 @@
-import GreetingView from '../view/greeting-view';
+import greeting from '../view/greeting-view';
 import showScreen from '../modules/show-screen';
 import rules from './rules';
 
-const screen = new GreetingView();
-
-screen.onButtonClick = () => {
-  showScreen(rules());
+greeting.onButtonClick = () => {
+  showScreen(rules);
 };
 
-export default screen.element;
+export default greeting.element;

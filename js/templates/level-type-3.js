@@ -1,4 +1,4 @@
-import {createElementFromTemplate, getRandomElement, generateRandomImages} from '../utils';
+import {createElementFromTemplate, getRandomElement, generateRandomImages} from '../utils/utils';
 import {checkAnswerTime} from '../modules/check-answer-time';
 import {renderLevel} from '../modules/render-level';
 import changeGameState from '../modules/change-game-state';

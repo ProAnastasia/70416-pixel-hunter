@@ -22,4 +22,4 @@ screen.onInputChange = (event, button) => {
   button.disabled = event.target.value === ``;
 };
 
-export default screen.element;
+export default screenLayout;

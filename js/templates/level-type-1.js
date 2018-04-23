@@ -1,42 +1,21 @@
-import {createElementFromTemplate, getRandomElement, generateRandomImages} from '../utils/utils';
+import {getRandomElement, generateRandomImages} from '../utils/utils';
+import {backButtonClickHandler} from '../utils/back-button';
 import {checkAnswerTime} from '../modules/check-answer-time';
 import {renderLevel} from '../modules/render-level';
 import changeGameState from '../modules/change-game-state';
-import renderHeader from './header';
-import showScreen from '../modules/show-screen';
-import statisticsBar from './statistics-bar';
-import footer from './footer';
-import greeting from './greeting';
+
+import LevelTypeOneView from '../view/level-type-1-view';
+
 import levelTypes from '../data/level-types';
 
 export const levelTypeOne = (gameState) => {
   const randomImages = generateRandomImages(1, ``);
-  const screenLayout = `<div class="game">
-                          <p class="game__task">Угадай, фото или рисунок?</p>
-                          <form class="game__content  game__content--wide">
-                            <div class="game__option">
-                              <img src=${randomImages[0].src} alt="Option 1" width="705" height="455">
-                              <label class="game__answer  game__answer--photo">
-                                <input name="question1" type="radio" value="photo">
-                                <span>Фото</span>
-                              </label>
-                              <label class="game__answer  game__answer--wide  game__answer--paint">
-                                <input name="question1" type="radio" value="paint">
-                                <span>Рисунок</span>
-                              </label>
-                            </div>
-                          </form>
-                          <div class="stats">
-                            ${statisticsBar(gameState.answers)}
-                          </div>
-                        </div>`;
-  const screenElement = createElementFromTemplate(`${renderHeader(true, true)}${screenLayout}${footer}`);
-  const backButton = screenElement.querySelector(`.back`);
-  const answerButtons = [...screenElement.querySelectorAll(`input[type="radio"]`)];
-  const imageType = randomImages[0].type;
+  const screen = new LevelTypeOneView(gameState, randomImages);
+  const screenLayout = screen.element;
 
-  const buttonOnClickHandler = (e) => {
-    const isAnswerCorrect = e.target.value === imageType;
+  screen.onBackButtonClick = backButtonClickHandler(screenLayout);
+  screen.onRadioChangeHandler = (e, type) => {
+    const isAnswerCorrect = e.target.value === type;
     const answerType = checkAnswerTime(50);
     const generatedLevelType = getRandomElement(levelTypes).type;
 
@@ -44,13 +23,5 @@ export const levelTypeOne = (gameState) => {
     renderLevel(generatedLevelType, gameState);
   };
 
-  answerButtons.forEach((answerButton) => {
-    answerButton.addEventListener(`change`, buttonOnClickHandler, false);
-  });
-
-  backButton.addEventListener(`click`, () => {
-    showScreen(greeting());
-  });
-
-  return screenElement;
+  return screenLayout;
 };

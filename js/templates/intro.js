@@ -5,7 +5,7 @@ import greeting from './greeting';
 const screen = new IntroView();
 
 screen.onButtonClick = () => {
-  showScreen(greeting());
+  showScreen(greeting);
 };
 
 export default screen.element;

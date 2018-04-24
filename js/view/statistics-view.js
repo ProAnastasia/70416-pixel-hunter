@@ -1,7 +1,7 @@
 import AbstractView from './abstract-view';
-import renderHeader from "../templates/header";
-import statisticsBar from '../templates/statistics-bar';
-import footerTemplate from "../templates/footer";
+import renderHeader from "../screens/header";
+import statisticsBar from '../screens/statistics-bar';
+import footerTemplate from "../screens/footer";
 
 import {GamePoint} from '../data/constants';
 
@@ -104,7 +104,9 @@ export default class StatisticsView extends AbstractView {
   }
 
   bind() {
-    this.onBackButtonClick();
+    const backButton = this.element.querySelector(`.back`);
+
+    backButton.addEventListener(`click`, this.onBackButtonClick);
   }
 
   onBackButtonClick() {}

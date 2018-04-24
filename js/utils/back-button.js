@@ -1,5 +1,5 @@
 import showScreen from '../modules/show-screen';
-import greeting from '../templates/greeting';
+import greeting from '../screens/greeting';
 /**
  * Set click handler to backButton
  * @param {Node} parentElement

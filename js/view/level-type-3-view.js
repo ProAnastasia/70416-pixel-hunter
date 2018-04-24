@@ -1,7 +1,7 @@
 import AbstractView from './abstract-view';
-import renderHeader from "../templates/header";
-import statisticsBar from '../templates/statistics-bar';
-import footerTemplate from "../templates/footer";
+import renderHeader from "../screens/header";
+import statisticsBar from '../screens/statistics-bar';
+import footerTemplate from "../screens/footer";
 
 export default class LevelTypeThreeView extends AbstractView {
   constructor(gameState = {}, images = []) {
@@ -45,12 +45,19 @@ export default class LevelTypeThreeView extends AbstractView {
 
   bind() {
     const answerButtons = [...this.element.querySelectorAll(`.game__option`)];
+    const backButton = this.element.querySelector(`.back`);
 
-    this.onBackButtonClick();
+    backButton.addEventListener(`click`, this.onBackButtonClick);
 
     answerButtons.forEach((answerButton) => {
       answerButton.addEventListener(`click`, (e) => {
-        this.onButtonClickHandler(e, this.images);
+        if (e.target.classList.contains(`game__option`)) {
+          const imageSrc = e.target.querySelector(`img`).src;
+          const image = this.images.filter((elem) => elem.src === imageSrc)[0];
+          const isCorrectAnswer = image.type === `paint`;
+
+          this.onButtonClickHandler(isCorrectAnswer);
+        }
       });
     });
   }
@@ -58,5 +65,5 @@ export default class LevelTypeThreeView extends AbstractView {
   onBackButtonClick() {}
 
   // eslint-disable-next-line no-unused-vars
-  onButtonClickHandler(event, images) {}
+  onButtonClickHandler(isCorrectAnswer) {}
 }

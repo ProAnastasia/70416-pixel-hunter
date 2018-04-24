@@ -1,7 +1,7 @@
 import AbstractView from './abstract-view';
-import renderHeader from "../templates/header";
-import statisticsBar from '../templates/statistics-bar';
-import footerTemplate from "../templates/footer";
+import renderHeader from "../screens/header";
+import statisticsBar from '../screens/statistics-bar';
+import footerTemplate from "../screens/footer";
 
 export default class LevelTypeTwoView extends AbstractView {
   constructor(gameState = {}, images = []) {
@@ -57,12 +57,20 @@ export default class LevelTypeTwoView extends AbstractView {
 
   bind() {
     const radioButtons = [...this.element.querySelectorAll(`input[type=radio]`)];
+    const backButton = this.element.querySelector(`.back`);
 
-    this.onBackButtonClick();
+    backButton.addEventListener(`click`, this.onBackButtonClick);
 
     radioButtons.forEach((radioButton) => {
-      radioButton.addEventListener(`change`, (e) => {
-        this.onRadioChangeHandler(e, this.images, radioButtons);
+      radioButton.addEventListener(`change`, () => {
+        const selectedRadioButtons = radioButtons.filter((item) => item.checked === true);
+
+        if (selectedRadioButtons.length === 2) {
+          const areAnswersCorrect = selectedRadioButtons[0].value === this.images[0].type &&
+                                    selectedRadioButtons[1].value === this.images[1].type;
+
+          this.onRadioChangeHandler(areAnswersCorrect);
+        }
       });
     });
   }

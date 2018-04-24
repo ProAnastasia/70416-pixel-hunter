@@ -1,7 +1,7 @@
 import AbstractView from './abstract-view';
-import footerTemplate from "../templates/footer";
+import footerTemplate from "../screens/footer";
 
-class GreetingView extends AbstractView {
+export default class GreetingView extends AbstractView {
   constructor() {
     super();
     this.title = `Лучшие художники-фотореалисты бросают&nbsp;тебе&nbsp;вызов!`;
@@ -35,7 +35,3 @@ class GreetingView extends AbstractView {
 
   onButtonClick() {}
 }
-
-const screenSingleTone = new GreetingView();
-
-export default screenSingleTone;

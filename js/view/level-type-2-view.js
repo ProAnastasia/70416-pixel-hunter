@@ -78,5 +78,5 @@ export default class LevelTypeTwoView extends AbstractView {
   onBackButtonClick() {}
 
   // eslint-disable-next-line no-unused-vars
-  onRadioChangeHandler(event, images, buttons) {}
+  onRadioChangeHandler(areAnswersCorrect) {}
 }

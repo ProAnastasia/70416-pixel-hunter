@@ -1,25 +1,22 @@
 import {getRandomElement} from '../utils/utils';
-import {backButtonClickHandler} from '../utils/back-button';
+import showScreen from '../modules/show-screen';
 import {renderLevel} from '../modules/render-level';
 import RulesView from '../view/rules-view';
 
 import levelTypes from '../data/level-types';
 import gameState from '../modules/get-game-state';
+import greeting from "./greeting";
 
 const screen = new RulesView();
-const screenLayout = screen.element;
 
-screen.onBackButtonClick = backButtonClickHandler(screenLayout);
+screen.onBackButtonClick = () => {
+  showScreen(greeting);
+};
 
-screen.onFormSubmit = (input) => {
+screen.onFormSubmit = () => {
   const generatedLevelType = getRandomElement(levelTypes).type;
 
   renderLevel(generatedLevelType, gameState);
-  input.value = ``;
 };
 
-screen.onInputChange = (event, button) => {
-  button.disabled = event.target.value === ``;
-};
-
-export default screenLayout;
+export default screen.element;

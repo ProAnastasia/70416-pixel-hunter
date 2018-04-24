@@ -64,5 +64,5 @@ export default class LevelTypeOneView extends AbstractView {
   onBackButtonClick() {}
 
   // eslint-disable-next-line no-unused-vars
-  onRadioChangeHandler(event, type) {}
+  onRadioChangeHandler(isAnswerCorrect) {}
 }

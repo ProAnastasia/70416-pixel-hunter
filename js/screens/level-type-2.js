@@ -15,6 +15,7 @@ export const levelTypeTwo = (gameState) => {
   screen.onBackButtonClick = () => {
     showScreen(greeting);
   };
+
   screen.onRadioChangeHandler = (areAnswersCorrect) => {
     const generatedLevelType = getRandomElement(levelTypes).type;
 

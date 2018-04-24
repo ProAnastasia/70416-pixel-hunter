@@ -31,28 +31,26 @@ export default class RulesView extends AbstractView {
   }
 
   bind() {
-    this.onBackButtonClick();
-
     const form = this.element.querySelector(`.rules__form`);
     const formInputName = form.querySelector(`.rules__input`);
     const formButton = form.querySelector(`.rules__button`);
+    const backButton = this.element.querySelector(`.back`);
+
+    backButton.addEventListener(`click`, this.onBackButtonClick);
 
     formInputName.addEventListener(`input`, (event) => {
-      this.onInputChange(event, formButton);
+      formButton.disabled = event.target.value === ``;
     });
 
     form.addEventListener(`submit`, (event) => {
       event.preventDefault();
 
-      this.onFormSubmit(formInputName);
+      formInputName.value = ``;
+      this.onFormSubmit();
     });
   }
 
   onBackButtonClick() {}
 
-  // eslint-disable-next-line no-unused-vars
-  onFormSubmit(input) {}
-
-  // eslint-disable-next-line no-unused-vars
-  onInputChange(event) {}
+  onFormSubmit() {}
 }

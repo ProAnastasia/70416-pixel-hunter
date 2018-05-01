@@ -8,6 +8,7 @@ export default class GameScreen {
   constructor(model) {
     this.model = model;
     this._content = new LevelTypeOne(this.model._gameState);
+    this.timerContainer = this._content.element.querySelector(`.game__timer`);
     this._timer = null;
   }
 
@@ -18,6 +19,7 @@ export default class GameScreen {
   startTimer() {
     const setTimer = () => {
       this.model.decreaseTimer();
+      this.updateHeader();
     };
 
     this._timer = setInterval(setTimer, GameParam.TIMER_PERIOD);
@@ -27,11 +29,15 @@ export default class GameScreen {
     clearInterval(this._timer);
   }
 
+  updateHeader() {
+    this.timerContainer.innerHTML = this.model._gameState.timer;
+  }
+
   startGame() {
     this.startTimer();
   }
 
   init() {
-
+    this.startGame();
   }
 }

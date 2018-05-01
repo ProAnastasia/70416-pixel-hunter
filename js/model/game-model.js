@@ -1,4 +1,4 @@
-import {INITIAL_GAME_STATE, GameParam} from '../data/constants';
+import {INITIAL_GAME_STATE} from '../data/constants';
 
 export default class GameModel {
   constructor(player) {
@@ -12,7 +12,7 @@ export default class GameModel {
   }
 
   get currentTimeValue() {
-    return GameParam.QUESTION_DURATION - this._gameState.timer;
+    return this._gameState.timer;
   }
 
   checkIsDead() {

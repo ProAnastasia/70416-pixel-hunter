@@ -19,7 +19,8 @@ export const GameParam = {
   QUESTION_TIME_SLOW: 20,
   QUESTION_DURATION: 30,
   QUESTIONS_TOTAL_NUM: 10,
-  LIVES_MAX_NUM: 3
+  LIVES_MAX_NUM: 3,
+  TIMER_PERIOD: 1000
 };
 /**
  * Enum for game points

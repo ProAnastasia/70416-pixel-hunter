@@ -3,8 +3,8 @@ import {INITIAL_GAME_STATE, GameParam} from '../data/constants';
 export default class GameModel {
   constructor(player) {
     this.player = player;
-    this.restartGame();
     this._gameState = {};
+    this.restartGame();
   }
 
   get gameState() {

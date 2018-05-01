@@ -22,7 +22,6 @@ export default class LevelTypeOneView extends AbstractView {
   }
 
   renderStatistics({answers} = []) {
-    console.log(this.gameState);
     return statisticsBar(answers);
   }
 

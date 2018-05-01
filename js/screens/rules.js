@@ -15,5 +15,9 @@ export default class RulesScreen {
     this.content.onBackButtonClick = () => {
       Application.showScreen(ScreenName.GREETING);
     };
+
+    this.content.onFormSubmit = () => {
+      Application.showGame();
+    };
   }
 }

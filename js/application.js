@@ -19,8 +19,9 @@ export default class Application {
     showScreen(statistics.element);
   }
 
-  showGame() {
-    // model logic
+  static showGame() {
+    // presenter logic
+    console.log(`trying to show screen`);
   }
 
   /**

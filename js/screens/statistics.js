@@ -14,5 +14,5 @@ export const statisticsScreen = (gameState) => {
     showScreen(greeting);
   };
 
-  return screen.element;
+  return screen;
 };

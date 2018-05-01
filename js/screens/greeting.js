@@ -8,4 +8,4 @@ greetingScreen.onButtonClick = () => {
   showScreen(rules);
 };
 
-export default greetingScreen.element;
+export default greetingScreen;

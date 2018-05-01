@@ -4,6 +4,7 @@
  * @enum {string}
  */
 export const ScreenName = {
+  INTRO: `intro`,
   RULES: `rules`,
   GREETING: `greeting`,
   GAME_SCREEN: `game-screen`

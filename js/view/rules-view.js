@@ -35,7 +35,6 @@ export default class RulesView extends AbstractView {
     const formInputName = form.querySelector(`.rules__input`);
     const formButton = form.querySelector(`.rules__button`);
     const backButton = this.element.querySelector(`.back`);
-
     backButton.addEventListener(`click`, this.onBackButtonClick);
 
     formInputName.addEventListener(`input`, (event) => {

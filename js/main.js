@@ -1,3 +1,4 @@
+import {ScreenName} from './data/constants';
 import Application from './application';
 
-Application.showIntro();
+Application.showScreen(ScreenName.INTRO);

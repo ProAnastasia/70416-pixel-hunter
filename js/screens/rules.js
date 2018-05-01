@@ -1,22 +1,19 @@
-import {getRandomElement} from '../utils/utils';
-import showScreen from '../modules/show-screen';
-import {renderLevel} from '../modules/render-level';
+import {ScreenName} from '../data/constants';
+import Application from '../application';
 import RulesView from '../view/rules-view';
 
-import levelTypes from '../data/level-types';
-import gameState from '../modules/get-game-state';
-import greeting from "./greeting";
+export default class RulesScreen {
+  constructor() {
+    this.content = new RulesView();
+  }
 
-const screen = new RulesView();
+  get element() {
+    return this.content.element;
+  }
 
-screen.onBackButtonClick = () => {
-  showScreen(greeting);
-};
-
-screen.onFormSubmit = () => {
-  const generatedLevelType = getRandomElement(levelTypes).type;
-
-  renderLevel(generatedLevelType, gameState);
-};
-
-export default screen.element;
+  init() {
+    this.content.onBackButtonClick = () => {
+      Application.showScreen(ScreenName.GREETING);
+    };
+  }
+}

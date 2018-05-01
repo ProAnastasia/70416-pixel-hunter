@@ -5,7 +5,7 @@
  */
 export const ScreenName = {
   RULES: `rules`,
-  INTRO: `intro`,
+  GREETING: `greeting`,
   GAME_SCREEN: `game-screen`
 };
 /**

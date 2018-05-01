@@ -7,16 +7,17 @@ import RulesScreen from './screens/rules';
 import showScreen from './modules/show-screen';
 
 const screens = {
-  [ScreenName.INTRO]: IntroScreen,
+  [ScreenName.GREETING]: GreetingScreen,
   [ScreenName.RULES]: RulesScreen,
   [ScreenName.GAME_SCREEN]: 'GameScreen'
 };
 
 export default class Application {
-  static showGreeting() {
-    const greeting = new GreetingScreen();
+  static showIntro() {
+    const intro = new IntroScreen();
 
-    showScreen(greeting.element);
+    showScreen(intro.element);
+    intro.init();
   }
 
   static showStatistics() {
@@ -25,8 +26,13 @@ export default class Application {
     showScreen(statistics.element);
   }
 
+  /**
+   * Show screen according to passed param
+   * @param {String} name
+   */
   static showScreen(name) {
-    const currentScreen = new screens[name]();
+    const SelectedScreen = screens[name];
+    const currentScreen = new SelectedScreen();
 
     showScreen(currentScreen.element);
     currentScreen.init();

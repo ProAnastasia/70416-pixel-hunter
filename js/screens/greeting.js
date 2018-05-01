@@ -1,11 +1,29 @@
+import {ScreenName} from '../data/constants';
+import Application from '../application';
 import GreetingView from '../view/greeting-view';
-import showScreen from '../modules/show-screen';
-import rules from './rules';
+// import showScreen from '../modules/show-screen';
+// import rules from './rules';
+//
+// const greetingScreen = new GreetingView();
+//
+// greetingScreen.onButtonClick = () => {
+//   showScreen(rules);
+// };
+//
+// export default greetingScreen;
 
-const greetingScreen = new GreetingView();
+export default class GreetingScreen {
+  constructor() {
+    this.content = new GreetingView();
+  }
 
-greetingScreen.onButtonClick = () => {
-  showScreen(rules);
-};
+  get element() {
+    return this.content.element;
+  }
 
-export default greetingScreen;
+  init() {
+    this.content.onButtonClick = () => {
+      Application.showScreen(ScreenName.RULES);
+    };
+  }
+}

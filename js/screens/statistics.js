@@ -5,7 +5,7 @@ import {getResultScores} from '../modules/get-result-scores';
 import StatisticsView from '../view/statistics-view';
 import greeting from "./greeting";
 
-export const statisticsScreen = (gameState) => {
+export default (gameState) => {
   const totalScores = getResultScores(gameState.answers, gameState.lives);
   const screen = new StatisticsView(gameState, totalScores);
 

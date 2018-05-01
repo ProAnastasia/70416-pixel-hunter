@@ -1,4 +1,14 @@
 /**
+ * Enum for screens names
+ * @readonly
+ * @enum {string}
+ */
+export const ScreenName = {
+  RULES: `rules`,
+  INTRO: `intro`,
+  GAME_SCREEN: `game-screen`
+};
+/**
  * Enum for game param
  * @readonly
  * @enum {number}

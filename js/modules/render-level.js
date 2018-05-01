@@ -3,7 +3,7 @@ import {GameParam} from '../data/constants';
 import {levelTypeOne} from '../screens/level-type-1';
 import {levelTypeTwo} from '../screens/level-type-2';
 import {levelTypeThree} from '../screens/level-type-3';
-import {statisticsScreen} from '../screens/statistics';
+import statisticsScreen from '../screens/statistics';
 
 const levels = {
   [`one-image`]: levelTypeOne,

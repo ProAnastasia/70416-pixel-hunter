@@ -1,14 +1,15 @@
+import {generateRandomImages} from '../utils/utils';
 import AbstractView from './abstract-view';
 import renderHeader from "../screens/header";
 import statisticsBar from '../screens/statistics-bar';
 import footerTemplate from "../screens/footer";
 
 export default class LevelTypeOneView extends AbstractView {
-  constructor(gameState = {}, images = []) {
+  constructor(gameState = {}) {
     super();
     this.gameState = gameState;
     this.title = `Угадай, фото или рисунок?`;
-    this.images = images;
+    this.images = generateRandomImages(1, ``);
     this.type = this.images[0].type;
     this.onRadioChangeHandler = this.onRadioChangeHandler.bind(this);
   }
@@ -21,6 +22,7 @@ export default class LevelTypeOneView extends AbstractView {
   }
 
   renderStatistics({answers} = []) {
+    console.log(this.gameState);
     return statisticsBar(answers);
   }
 

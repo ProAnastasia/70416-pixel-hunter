@@ -16,8 +16,8 @@ export default class RulesScreen {
       Application.showScreen(ScreenName.GREETING);
     };
 
-    this.content.onFormSubmit = () => {
-      Application.showGame();
+    this.content.onFormSubmit = (player) => {
+      Application.showGame(player);
     };
   }
 }

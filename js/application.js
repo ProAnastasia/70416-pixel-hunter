@@ -3,7 +3,8 @@ import IntroScreen from './screens/intro';
 import GreetingScreen from './screens/greeting';
 import RulesScreen from './screens/rules';
 import StatisticsScreen from './screens/statistics';
-// import GameScreen from './screens/game-screen';
+import GameModel from './model/game-model';
+import GameScreen from './screens/game-screen';
 import showScreen from './modules/show-screen';
 
 const screens = {
@@ -19,9 +20,12 @@ export default class Application {
     showScreen(statistics.element);
   }
 
-  static showGame() {
-    // presenter logic
-    console.log(`trying to show screen`);
+  static showGame(player) {
+    const model = new GameModel(player);
+    const gameScreen = new GameScreen(model);
+
+    gameScreen.init();
+    showScreen(gameScreen.element);
   }
 
   /**

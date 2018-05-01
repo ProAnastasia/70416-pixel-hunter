@@ -42,10 +42,12 @@ export default class RulesView extends AbstractView {
     });
 
     form.addEventListener(`submit`, (event) => {
+      const playerName = formInputName.value;
+
       event.preventDefault();
 
+      this.onFormSubmit(playerName);
       formInputName.value = ``;
-      this.onFormSubmit();
     });
   }
 

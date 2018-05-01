@@ -6,6 +6,7 @@
 export const GameParam = {
   QUESTION_TIME_FAST: 10,
   QUESTION_TIME_SLOW: 20,
+  QUESTION_DURATION: 30,
   QUESTIONS_TOTAL_NUM: 10,
   LIVES_MAX_NUM: 3
 };
@@ -30,7 +31,8 @@ export const INITIAL_GAME_STATE = {
   lives: 3,
   timer: 30,
   answers: new Array(GameParam.QUESTIONS_TOTAL_NUM).fill(`unknown`),
-  questionNum: 0
+  questionNum: 0,
+  isGameWon: false
 };
 /**
  * Enum for icons sources

@@ -1,5 +1,5 @@
 import AbstractView from './abstract-view';
-import footerTemplate from "../screens/footer";
+import footerTemplate from "../components/footer";
 
 export default class GreetingView extends AbstractView {
   constructor() {

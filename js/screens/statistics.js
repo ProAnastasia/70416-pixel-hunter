@@ -2,7 +2,7 @@ import {resetGameState} from '../modules/change-game-state';
 import showScreen from '../modules/show-screen';
 import {getResultScores} from '../modules/get-result-scores';
 
-import StatisticsView from '../view/statistics-view';
+import StatisticsView from '../views/statistics-view';
 import greeting from "./greeting";
 
 export default (gameState) => {

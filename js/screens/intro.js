@@ -1,6 +1,6 @@
 import {ScreenName} from '../data/constants';
 import Application from '../application';
-import IntroView from '../view/intro-view';
+import IntroView from '../views/intro-view';
 
 export default class IntroScreen {
   constructor() {

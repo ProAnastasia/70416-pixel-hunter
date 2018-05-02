@@ -1,7 +1,7 @@
 import AbstractView from './abstract-view';
-import renderHeader from "../screens/header";
+import renderHeader from "./header-view";
 import statisticsBar from '../screens/statistics-bar';
-import footerTemplate from "../screens/footer";
+import footerTemplate from "../components/footer";
 
 export default class LevelTypeThreeView extends AbstractView {
   constructor(gameState = {}, images = []) {

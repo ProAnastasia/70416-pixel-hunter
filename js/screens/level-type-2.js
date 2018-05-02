@@ -4,7 +4,7 @@ import {checkAnswerTime} from '../modules/check-answer-time';
 import {renderLevel} from '../modules/render-level';
 import changeGameState from '../modules/change-game-state';
 
-import LevelTypeTwoView from '../view/level-type-2-view';
+import LevelTypeTwoView from '../views/level-type-2-view';
 import levelTypes from '../data/level-types';
 import greeting from "./greeting";
 

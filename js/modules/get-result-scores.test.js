@@ -1,4 +1,5 @@
 import {assert} from 'chai';
+import {GameParam, GamePoint, AnswerType} from '../data/constants';
 import {getResultScores} from './get-result-scores';
 
 /**

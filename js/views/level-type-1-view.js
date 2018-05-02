@@ -1,8 +1,7 @@
 import {generateRandomImages} from '../utils/utils';
 import AbstractView from './abstract-view';
-import renderHeader from "../screens/header";
 import statisticsBar from '../screens/statistics-bar';
-import footerTemplate from "../screens/footer";
+import footerTemplate from "../components/footer";
 
 export default class LevelTypeOneView extends AbstractView {
   constructor(gameState = {}) {
@@ -16,7 +15,6 @@ export default class LevelTypeOneView extends AbstractView {
 
   get template() {
     return `
-      ${renderHeader(true, true)}
       ${this.renderGame()}
       ${footerTemplate}`;
   }

@@ -1,6 +1,6 @@
 import {ScreenName} from '../data/constants';
 import Application from '../application';
-import GreetingView from '../view/greeting-view';
+import GreetingView from '../views/greeting-view';
 
 export default class GreetingScreen {
   constructor() {

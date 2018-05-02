@@ -1,6 +1,5 @@
 import AbstractView from './abstract-view';
-import renderHeader from "../screens/header";
-import footerTemplate from "../screens/footer";
+import footerTemplate from "../components/footer";
 
 export default class RulesView extends AbstractView {
   constructor() {
@@ -10,8 +9,7 @@ export default class RulesView extends AbstractView {
   }
 
   get template() {
-    return `${renderHeader(true, false)}
-            <div class="rules">
+    return `<div class="rules">
               <h1 class="rules__title">${this.title}</h1>
               <p class="rules__description">${this.description} <img
                 src="img/photo_icon.png" width="16" height="16"> или рисунок <img
@@ -34,8 +32,6 @@ export default class RulesView extends AbstractView {
     const form = this.element.querySelector(`.rules__form`);
     const formInputName = form.querySelector(`.rules__input`);
     const formButton = form.querySelector(`.rules__button`);
-    const backButton = this.element.querySelector(`.back`);
-    backButton.addEventListener(`click`, this.onBackButtonClick);
 
     formInputName.addEventListener(`input`, (event) => {
       formButton.disabled = event.target.value === ``;
@@ -50,8 +46,6 @@ export default class RulesView extends AbstractView {
       formInputName.value = ``;
     });
   }
-
-  onBackButtonClick() {}
 
   onFormSubmit() {}
 }

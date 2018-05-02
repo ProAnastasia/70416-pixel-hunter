@@ -1,6 +1,6 @@
 import {ScreenName} from '../data/constants';
 import Application from '../application';
-import RulesView from '../view/rules-view';
+import RulesView from '../views/rules-view';
 
 export default class RulesScreen {
   constructor() {

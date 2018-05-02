@@ -30,7 +30,7 @@ export default class HeaderView extends AbstractView {
   get template() {
     const isStateAvailable = !!this.state;
 
-    return `<header>
+    return `<header class="header">
               ${this.renderBackButton()}
               ${isStateAvailable ? this.renderStatistics() : ``}
             </header>`;
@@ -39,7 +39,9 @@ export default class HeaderView extends AbstractView {
   bind() {
     const backButton = this.element.querySelector(`.back`);
 
-    backButton.addEventListener(`click`, this.onBackButtonClick);
+    backButton.addEventListener(`click`, () => {
+      this.onBackButtonClick();
+    });
   }
 
   onBackButtonClick() {}

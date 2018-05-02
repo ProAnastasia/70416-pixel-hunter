@@ -1,16 +1,19 @@
-import {ScreenName} from '../data/constants';
-import {GameParam} from '../data/constants';
+import {generateRandomNumber} from '../utils/utils';
+import {ScreenName, GameParam} from '../data/constants';
 import HeaderView from '../views/header-view';
 import LevelTypeOne from '../views/level-type-1-view';
 import LevelTypeTwo from '../views/level-type-2-view';
 import LevelTypeThree from '../views/level-type-3-view';
 import Application from '../application';
 
+const levelViews = [LevelTypeOne, LevelTypeTwo, LevelTypeThree];
+const RandomLevel = levelViews[generateRandomNumber(0, levelViews.length)];
+
 export default class GameScreen {
   constructor(model) {
     this.model = model;
     this.header = new HeaderView(this.model.gameState);
-    this.screenContent = new LevelTypeOne(this.model._gameState);
+    this.screenContent = new RandomLevel(this.model.gameState);
     this.content = this.renderContent();
     this.timer = null;
   }

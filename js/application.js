@@ -35,7 +35,7 @@ export default class Application {
   static showScreen(name) {
     const SelectedScreen = screens[name];
     const currentScreen = new SelectedScreen();
-
+    console.log(currentScreen);
     currentScreen.init();
     showScreen(currentScreen.element);
   }

@@ -3,7 +3,7 @@ import showScreen from '../modules/show-screen';
 import {getResultScores} from '../modules/get-result-scores';
 
 import StatisticsView from '../views/statistics-view';
-import greeting from "./greeting";
+import greeting from "./greeting-screen";
 
 export default (gameState) => {
   const totalScores = getResultScores(gameState.answers, gameState.lives);

@@ -18,7 +18,7 @@ export default class HeaderView extends AbstractView {
   }
 
   renderStatistics() {
-    const {lives, timer} = this.gameState;
+    const {lives, timer} = this.state;
 
     return `<h1 class="game__timer">${timer}</h1>
              <div class="game__lives">
@@ -28,7 +28,7 @@ export default class HeaderView extends AbstractView {
   }
 
   get template() {
-    const isStateAvailable = !!this.gameState;
+    const isStateAvailable = !!this.state;
 
     return `<header>
               ${this.renderBackButton()}

@@ -4,23 +4,22 @@ import {checkAnswerTime} from '../modules/check-answer-time';
 import {renderLevel} from '../modules/render-level';
 import changeGameState from '../modules/change-game-state';
 
-import LevelTypeThreeView from '../views/level-type-3-view';
+import LevelTypeOneView from '../views/level-type-1-view';
 import levelTypes from '../data/level-types';
-import greeting from "./greeting";
+import greeting from "./greeting-screen";
 
-export const levelTypeThree = (gameState) => {
-  const randomImages = generateRandomImages(3, `paint`);
-  const screen = new LevelTypeThreeView(gameState, randomImages);
-
+export const levelTypeOne = (gameState) => {
+  const randomImages = generateRandomImages(1, ``);
+  const screen = new LevelTypeOneView(gameState, randomImages);
 
   screen.onBackButtonClick = () => {
     showScreen(greeting);
   };
 
-  screen.onButtonClickHandler = (isCorrectAnswer) => {
+  screen.onRadioChangeHandler = (isAnswerCorrect) => {
     const generatedLevelType = getRandomElement(levelTypes).type;
 
-    changeGameState(isCorrectAnswer, checkAnswerTime(20));
+    changeGameState(isAnswerCorrect, checkAnswerTime(50)); // temporarily static value
     renderLevel(generatedLevelType, gameState);
   };
 

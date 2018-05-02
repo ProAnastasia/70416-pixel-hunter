@@ -1,9 +1,9 @@
 import showScreen from '../modules/show-screen';
 import {GameParam} from '../data/constants';
-import {levelTypeOne} from '../screens/level-type-1';
-import {levelTypeTwo} from '../screens/level-type-2';
-import {levelTypeThree} from '../screens/level-type-3';
-import statisticsScreen from '../screens/statistics';
+import {levelTypeOne} from '../screens/level-type-1-screen';
+import {levelTypeTwo} from '../screens/level-type-2-screen';
+import {levelTypeThree} from '../screens/level-type-3-screen';
+import statisticsScreen from '../screens/statistics-screen';
 
 const levels = {
   [`one-image`]: levelTypeOne,

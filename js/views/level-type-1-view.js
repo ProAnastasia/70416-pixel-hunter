@@ -1,6 +1,6 @@
 import {generateRandomImages} from '../utils/utils';
 import AbstractView from './abstract-view';
-import statisticsBar from '../screens/statistics-bar';
+import statisticsBar from '../components/statistics-bar';
 import footerTemplate from "../components/footer";
 
 export default class LevelTypeOneView extends AbstractView {
@@ -47,9 +47,6 @@ export default class LevelTypeOneView extends AbstractView {
 
   bind() {
     const answerButtons = [...this.element.querySelectorAll(`input[type="radio"]`)];
-    const backButton = this.element.querySelector(`.back`);
-
-    backButton.addEventListener(`click`, this.onBackButtonClick);
 
     answerButtons.forEach((answerButton) => {
       answerButton.addEventListener(`change`, (e) => {
@@ -59,8 +56,6 @@ export default class LevelTypeOneView extends AbstractView {
       });
     });
   }
-
-  onBackButtonClick() {}
 
   // eslint-disable-next-line no-unused-vars
   onRadioChangeHandler(isAnswerCorrect) {}

@@ -1,8 +1,8 @@
 import {ScreenName} from './data/constants';
-import IntroScreen from './screens/intro';
-import GreetingScreen from './screens/greeting';
-import RulesScreen from './screens/rules';
-import StatisticsScreen from './screens/statistics';
+import IntroScreen from './screens/intro-screen';
+import GreetingScreen from './screens/greeting-screen';
+import RulesScreen from './screens/rules-screen';
+import StatisticsScreen from './screens/statistics-screen';
 import GameModel from './model/game-model';
 import GameScreen from './screens/game-screen';
 import showScreen from './modules/show-screen';
@@ -35,7 +35,7 @@ export default class Application {
   static showScreen(name) {
     const SelectedScreen = screens[name];
     const currentScreen = new SelectedScreen();
-    console.log(currentScreen);
+
     currentScreen.init();
     showScreen(currentScreen.element);
   }

@@ -1,6 +1,6 @@
 import AbstractView from './abstract-view';
 import renderHeader from "./header-view";
-import statisticsBar from '../screens/statistics-bar';
+import statisticsBar from '../components/statistics-bar';
 import footerTemplate from "../components/footer";
 
 export default class LevelTypeThreeView extends AbstractView {

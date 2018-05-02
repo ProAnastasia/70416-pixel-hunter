@@ -1,4 +1,5 @@
 import {GameParam} from '../data/constants';
+import HeaderView from '../views/header-view';
 import LevelTypeOne from '../views/level-type-1-view';
 import LevelTypeTwo from '../views/level-type-2-view';
 import LevelTypeThree from '../views/level-type-3-view';
@@ -7,6 +8,7 @@ import Application from '../application';
 export default class GameScreen {
   constructor(model) {
     this.model = model;
+    this.header = new HeaderView(this.model.gameState);
     this._content = new LevelTypeOne(this.model._gameState);
     this._timer = null;
   }

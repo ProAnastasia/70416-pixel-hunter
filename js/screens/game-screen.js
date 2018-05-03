@@ -14,22 +14,15 @@ export default class GameScreen {
     this.model = model;
     this.header = new HeaderView(this.model.gameState);
     this.screenContent = new RandomLevel(this.model.gameState);
-    this.content = this.renderContent();
+    this.content = document.createElement(`div`);
+    this.content.appendChild(this.header.element);
+    this.content.appendChild(this.screenContent.element);
     this.timer = null;
     this.checkAnswerTime = this.checkAnswerTime.bind(this);
   }
 
   get element() {
     return this.content;
-  }
-
-  renderContent() {
-    const container = document.createElement(`div`);
-
-    container.appendChild(this.header.element);
-    container.appendChild(this.screenContent.element);
-
-    return container;
   }
 
   startTimer() {
@@ -63,10 +56,17 @@ export default class GameScreen {
     const isDead = this.model.checkIsDead();
     const RandomView = levelViews[generateRandomNumber(0, levelViews.length)];
 
+    this.model.stopTimer();
+
     if (!isDead) {
-      this.header = new HeaderView(this.model.gameState);
-      this.screenContent = new RandomView(this.model.gameState);
-      this.content = this.renderContent();
+      const newHeader = new HeaderView(this.model.gameState);
+      const newLevel = new RandomView(this.model.gameState);
+
+      this.content.replaceChild(newHeader.element, this.header.element);
+      this.content.replaceChild(newLevel.element, this.screenContent.element);
+      this.header = newHeader;
+      this.screenContent = newLevel;
+
       this.startGame();
     }
   }
@@ -74,7 +74,7 @@ export default class GameScreen {
   onAnswer(isAnswerCorrect) {
     let timer;
     let answerType;
-    console.log(isAnswerCorrect);
+
     this.stopTimer();
 
     if (isAnswerCorrect) {
@@ -82,9 +82,10 @@ export default class GameScreen {
       answerType = this.checkAnswerTime(timer);
     } else {
       answerType = AnswerType.WRONG;
+      this.model.decreaseLives();
     }
     this.model.saveAnswer(answerType);
-
+    this.changeLevel();
   }
 
   checkAnswerTime(time) {

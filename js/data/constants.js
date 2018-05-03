@@ -19,7 +19,7 @@ export const GameParam = {
   QUESTION_TIME_SLOW: 20,
   QUESTION_DURATION: 30,
   QUESTIONS_TOTAL_NUM: 10,
-  LIVES_MAX_NUM: 3,
+  LIVES_MAX_NUM: 4,
   TIMER_PERIOD: 1000
 };
 /**
@@ -40,7 +40,7 @@ export const GamePoint = {
  */
 export const INITIAL_GAME_STATE = {
   totalPoints: 0,
-  lives: 3,
+  lives: 4,
   timer: 30,
   answers: new Array(GameParam.QUESTIONS_TOTAL_NUM).fill(`unknown`),
   questionNum: 0,

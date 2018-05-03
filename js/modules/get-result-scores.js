@@ -1,7 +1,10 @@
 import {GameParam, GamePoint, AnswerType} from '../data/constants';
 
 const countScores = (answers, lives) => {
-  let scores = 0;
+  let scores;
+
+  lives = lives < 0 ? 0 : lives;
+  scores = lives * GamePoint.LIFE_VALUE;
 
   answers.forEach((answer) => {
     switch (answer) {
@@ -19,7 +22,7 @@ const countScores = (answers, lives) => {
     }
   });
 
-  return scores + (lives * GamePoint.LIFE_VALUE);
+  return scores;
 };
 
 /**

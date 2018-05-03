@@ -18,7 +18,10 @@ export default class HeaderView extends AbstractView {
   }
 
   renderStatistics() {
-    const {lives, timer} = this.state;
+    const {timer} = this.state;
+    let {lives} = this.state;
+
+    lives = lives - 1;
 
     return `<h1 class="game__timer">${timer}</h1>
              <div class="game__lives">

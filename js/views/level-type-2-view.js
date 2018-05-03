@@ -1,20 +1,19 @@
+import {generateRandomImages} from '../utils/utils';
 import AbstractView from './abstract-view';
-import renderHeader from "./header-view";
 import statisticsBar from '../components/statistics-bar';
 import footerTemplate from "../components/footer";
 
 export default class LevelTypeTwoView extends AbstractView {
-  constructor(gameState = {}, images = []) {
+  constructor(gameState = {}) {
     super();
     this.gameState = gameState;
     this.title = `Угадайте для каждого изображения фото или рисунок?`;
-    this.images = images;
-    this.onRadioChangeHandler = this.onRadioChangeHandler.bind(this);
+    this.images = generateRandomImages(2, ``);
+    this.onAnswer = this.onAnswer.bind(this);
   }
 
   get template() {
-    return `${renderHeader(true, true)}
-            ${this.renderGame()}
+    return `${this.renderGame()}
             ${footerTemplate}`;
   }
 
@@ -57,9 +56,6 @@ export default class LevelTypeTwoView extends AbstractView {
 
   bind() {
     const radioButtons = [...this.element.querySelectorAll(`input[type=radio]`)];
-    const backButton = this.element.querySelector(`.back`);
-
-    backButton.addEventListener(`click`, this.onBackButtonClick);
 
     radioButtons.forEach((radioButton) => {
       radioButton.addEventListener(`change`, () => {
@@ -69,14 +65,12 @@ export default class LevelTypeTwoView extends AbstractView {
           const areAnswersCorrect = selectedRadioButtons[0].value === this.images[0].type &&
                                     selectedRadioButtons[1].value === this.images[1].type;
 
-          this.onRadioChangeHandler(areAnswersCorrect);
+          this.onAnswer(areAnswersCorrect);
         }
       });
     });
   }
 
-  onBackButtonClick() {}
-
   // eslint-disable-next-line no-unused-vars
-  onRadioChangeHandler(areAnswersCorrect) {}
+  onAnswer(areAnswersCorrect) {}
 }

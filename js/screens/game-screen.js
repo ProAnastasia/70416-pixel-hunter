@@ -1,5 +1,5 @@
 import {generateRandomNumber} from '../utils/utils';
-import {ScreenName, GameParam} from '../data/constants';
+import {ScreenName, GameParam, AnswerType} from '../data/constants';
 import HeaderView from '../views/header-view';
 import LevelTypeOne from '../views/level-type-1-view';
 import LevelTypeTwo from '../views/level-type-2-view';
@@ -16,6 +16,7 @@ export default class GameScreen {
     this.screenContent = new RandomLevel(this.model.gameState);
     this.content = this.renderContent();
     this.timer = null;
+    this.checkAnswerTime = this.checkAnswerTime.bind(this);
   }
 
   get element() {
@@ -54,7 +55,54 @@ export default class GameScreen {
   }
 
   startGame() {
+    this.screenContent.onAnswer = this.onAnswer.bind(this);
     this.startTimer();
+  }
+
+  changeLevel() {
+    const isDead = this.model.checkIsDead();
+    const RandomView = levelViews[generateRandomNumber(0, levelViews.length)];
+
+    if (!isDead) {
+      this.header = new HeaderView(this.model.gameState);
+      this.screenContent = new RandomView(this.model.gameState);
+      this.content = this.renderContent();
+      this.startGame();
+    }
+  }
+
+  onAnswer(isAnswerCorrect) {
+    let timer;
+    let answerType;
+    console.log(isAnswerCorrect);
+    this.stopTimer();
+
+    if (isAnswerCorrect) {
+      timer = this.model.gameState.timer;
+      answerType = this.checkAnswerTime(timer);
+    } else {
+      answerType = AnswerType.WRONG;
+    }
+    this.model.saveAnswer(answerType);
+
+  }
+
+  checkAnswerTime(time) {
+    const answerTime = GameParam.QUESTION_DURATION - time;
+    let answerType;
+
+    switch (true) {
+      case (answerTime < GameParam.QUESTION_TIME_FAST):
+        answerType = AnswerType.FAST;
+        break;
+      case (answerTime <= GameParam.QUESTION_TIME_SLOW):
+        answerType = AnswerType.CORRECT;
+        break;
+      default:
+        answerType = AnswerType.SLOW;
+    }
+
+    return answerType;
   }
 
   init() {

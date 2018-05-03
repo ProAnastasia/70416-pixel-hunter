@@ -1,22 +1,20 @@
+import {generateRandomImages} from '../utils/utils';
 import AbstractView from './abstract-view';
-import renderHeader from "./header-view";
 import statisticsBar from '../components/statistics-bar';
 import footerTemplate from "../components/footer";
 
 export default class LevelTypeThreeView extends AbstractView {
-  constructor(gameState = {}, images = []) {
+  constructor(gameState = {}) {
     super();
     this.gameState = gameState;
     this.title = `Найдите рисунок среди изображений`;
-    this.images = images;
-    this.onButtonClickHandler = this.onButtonClickHandler.bind(this);
+    this.images = generateRandomImages(3, `paint`);
+    this.onAnswer = this.onAnswer.bind(this);
   }
 
   get template() {
-    return `
-      ${renderHeader(true, true)}
-      ${this.renderGame()}
-      ${footerTemplate}`;
+    return `${this.renderGame()}
+            ${footerTemplate}`;
   }
 
   renderGame() {
@@ -45,9 +43,6 @@ export default class LevelTypeThreeView extends AbstractView {
 
   bind() {
     const answerButtons = [...this.element.querySelectorAll(`.game__option`)];
-    const backButton = this.element.querySelector(`.back`);
-
-    backButton.addEventListener(`click`, this.onBackButtonClick);
 
     answerButtons.forEach((answerButton) => {
       answerButton.addEventListener(`click`, (e) => {
@@ -56,14 +51,12 @@ export default class LevelTypeThreeView extends AbstractView {
           const image = this.images.filter((elem) => elem.src === imageSrc)[0];
           const isCorrectAnswer = image.type === `paint`;
 
-          this.onButtonClickHandler(isCorrectAnswer);
+          this.onAnswer(isCorrectAnswer);
         }
       });
     });
   }
 
-  onBackButtonClick() {}
-
   // eslint-disable-next-line no-unused-vars
-  onButtonClickHandler(isCorrectAnswer) {}
+  onAnswer(isCorrectAnswer) {}
 }

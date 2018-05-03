@@ -10,7 +10,7 @@ export default class LevelTypeOneView extends AbstractView {
     this.title = `Угадай, фото или рисунок?`;
     this.images = generateRandomImages(1, ``);
     this.type = this.images[0].type;
-    this.onRadioChangeHandler = this.onRadioChangeHandler.bind(this);
+    this.onAnswer = this.onAnswer.bind(this);
   }
 
   get template() {
@@ -52,11 +52,11 @@ export default class LevelTypeOneView extends AbstractView {
       answerButton.addEventListener(`change`, (e) => {
         const isAnswerCorrect = e.target.value === this.type;
 
-        this.onRadioChangeHandler(isAnswerCorrect);
+        this.onAnswer(isAnswerCorrect);
       });
     });
   }
 
   // eslint-disable-next-line no-unused-vars
-  onRadioChangeHandler(isAnswerCorrect) {}
+  onAnswer(isAnswerCorrect) {}
 }

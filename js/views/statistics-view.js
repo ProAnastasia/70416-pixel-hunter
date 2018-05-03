@@ -10,7 +10,7 @@ export default class StatisticsView extends AbstractView {
     this.gameState = gameState;
     this.isGameWon = this.gameState.isGameWon;
     this.title = this.isGameWon ? `<h1>Победа!</h1>` : `<h1>Проигрыш</h1>`;
-    this.answers = this.gameState.answers;
+    this.answers = [...this.gameState.answers];
     this.lives = this.gameState.lives;
     this.answersNum = {
       fastAnswersNum: this.answers.filter((answer) => answer === `fast`).length,

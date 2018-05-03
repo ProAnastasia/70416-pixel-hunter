@@ -56,23 +56,26 @@ export default class GameScreen {
 
   changeLevel() {
     const isDead = this.model.checkIsDead();
-    const RandomView = levelViews[generateRandomNumber(0, levelViews.length)];
 
     this.model.stopTimer();
 
     if (!isDead) {
-      const newHeader = new HeaderView(this.model.gameState);
-      const newLevel = new RandomView(this.model.gameState);
-
-      this.content.replaceChild(newHeader.element, this.header.element);
-      this.content.replaceChild(newLevel.element, this.screenContent.element);
-      this.header = newHeader;
-      this.screenContent = newLevel;
-
+      this.rederNewLevel();
       this.startGame();
     } else {
       Application.showStatistics(this.model.gameState, this.model.getTotalScores());
     }
+  }
+
+  rederNewLevel() {
+    const RandomView = levelViews[generateRandomNumber(0, levelViews.length)];
+    const newHeader = new HeaderView(this.model.gameState);
+    const newLevel = new RandomView(this.model.gameState);
+
+    this.content.replaceChild(newHeader.element, this.header.element);
+    this.content.replaceChild(newLevel.element, this.screenContent.element);
+    this.header = newHeader;
+    this.screenContent = newLevel;
   }
 
   checkAnswer(isAnswerCorrect) {

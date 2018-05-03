@@ -12,14 +12,6 @@ export default class GameModel {
     return this._gameState;
   }
 
-  get currentTimeValue() {
-    return this._gameState.timer;
-  }
-
-  get livesNum() {
-    return this._gameState.lives;
-  }
-
   decreaseLives() {
     this._gameState.lives--;
   }
@@ -35,6 +27,7 @@ export default class GameModel {
 
   restartGame() {
     this._gameState = Object.assign({}, INITIAL_GAME_STATE);
+    this.gameState.answers = [...INITIAL_GAME_STATE.answers];
   }
 
   setVictory() {

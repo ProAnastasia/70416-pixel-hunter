@@ -1,5 +1,4 @@
 import {assert} from 'chai';
-import {GameParam, GamePoint, AnswerType} from '../data/constants';
 import {getResultScores} from './get-result-scores';
 
 /**
@@ -12,14 +11,14 @@ const fillArrayWithAnswers = (length, answer) => {
   return new Array(length).fill(answer);
 };
 
-const notEnoughAnswers = fillArrayWithAnswers(9, {value: true, time: 12});
-const averageAnswers = fillArrayWithAnswers(10, {value: true, time: 12});
-const fastAnswers = fillArrayWithAnswers(10, {value: true, time: 8});
-const slowAnswers = fillArrayWithAnswers(10, {value: true, time: 28});
+const notEnoughAnswers = fillArrayWithAnswers(9, `correct`);
+const averageAnswers = fillArrayWithAnswers(10, `correct`);
+const fastAnswers = fillArrayWithAnswers(10, `fast`);
+const slowAnswers = fillArrayWithAnswers(10, `slow`);
 const differentAnswers = [
-  ...fillArrayWithAnswers(2, {value: true, time: 5}),
-  ...fillArrayWithAnswers(5, {value: true, time: 11}),
-  ...fillArrayWithAnswers(3, {value: true, time: 22}),
+  ...fillArrayWithAnswers(2, `fast`),
+  ...fillArrayWithAnswers(5, `correct`),
+  ...fillArrayWithAnswers(3, `slow`),
 ];
 
 describe(`Check score counter`, () => {

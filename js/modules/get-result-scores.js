@@ -5,11 +5,11 @@ const countScores = (answers, lives) => {
 
   answers.forEach((answer) => {
     switch (answer) {
-      case AnswerType.ANSWER_CORRECT:
+      case AnswerType.CORRECT:
         scores += GamePoint.ANSWER_CORRECT;
         break;
       case AnswerType.FAST:
-        scores += (GamePoint.ANSWER_QUICK + GamePoint.ANSWER_QUICK);
+        scores += (GamePoint.ANSWER_QUICK + GamePoint.ANSWER_CORRECT);
         break;
       case AnswerType.SLOW:
         scores += (GamePoint.ANSWER_CORRECT - GamePoint.ANSWER_SLOW);

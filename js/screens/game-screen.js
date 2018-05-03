@@ -110,7 +110,6 @@ export default class GameScreen {
     this.changeLevel();
   }
 
-
   checkAnswerTime(time) {
     const answerTime = GameParam.QUESTION_DURATION - time;
     let answerType;

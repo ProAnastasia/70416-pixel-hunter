@@ -1,5 +1,4 @@
 import AbstractView from './abstract-view';
-import renderHeader from "./header-view";
 import statisticsBar from '../components/statistics-bar';
 import footerTemplate from "../components/footer";
 
@@ -22,8 +21,7 @@ export default class StatisticsView extends AbstractView {
   }
 
   get template() {
-    return `${renderHeader(true, false)}
-            ${this.renderScreen()}
+    return `${this.renderScreen()}
             ${footerTemplate}`;
   }
 
@@ -102,12 +100,4 @@ export default class StatisticsView extends AbstractView {
                           </table>
                         </div>`;
   }
-
-  bind() {
-    const backButton = this.element.querySelector(`.back`);
-
-    backButton.addEventListener(`click`, this.onBackButtonClick);
-  }
-
-  onBackButtonClick() {}
 }

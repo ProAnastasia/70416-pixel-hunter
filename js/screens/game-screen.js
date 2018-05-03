@@ -31,6 +31,8 @@ export default class GameScreen {
 
       if (this.model.gameState.timer >= 0) {
         this.updateHeader();
+      } else {
+        this.checkAnswer(false);
       }
     };
 
@@ -48,7 +50,7 @@ export default class GameScreen {
   }
 
   startGame() {
-    this.screenContent.onAnswer = this.onAnswer.bind(this);
+    this.screenContent.onAnswer = this.checkAnswer.bind(this);
     this.startTimer();
   }
 
@@ -68,10 +70,12 @@ export default class GameScreen {
       this.screenContent = newLevel;
 
       this.startGame();
+    } else {
+      Application.showStatistics(this.model.gameState, this.model.getTotalScores());
     }
   }
 
-  onAnswer(isAnswerCorrect) {
+  checkAnswer(isAnswerCorrect) {
     let timer;
     let answerType;
 
@@ -85,8 +89,24 @@ export default class GameScreen {
       this.model.decreaseLives();
     }
     this.model.saveAnswer(answerType);
+    this.isNextAvailable();
+  }
+
+  isNextAvailable() {
+    const isDead = this.model.checkIsDead();
+    const isNextLevelAvailable = this.model.isNextLevelExist();
+
+    if (isDead || !isNextLevelAvailable) {
+      if (!isDead) {
+        this.model.setVictory();
+      }
+
+      Application.showStatistics(this.model.gameState, this.model.getTotalScores());
+    }
+
     this.changeLevel();
   }
+
 
   checkAnswerTime(time) {
     const answerTime = GameParam.QUESTION_DURATION - time;

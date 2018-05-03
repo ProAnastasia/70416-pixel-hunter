@@ -14,10 +14,11 @@ const screens = {
 };
 
 export default class Application {
-  static showStatistics() {
-    const statistics = new StatisticsScreen();
+  static showStatistics(gameState, total) {
+    const statisticsScreen = new StatisticsScreen(gameState, total);
 
-    showScreen(statistics.element);
+    statisticsScreen.init();
+    showScreen(statisticsScreen.element);
   }
 
   static showGame(player) {

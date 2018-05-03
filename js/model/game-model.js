@@ -1,4 +1,4 @@
-import {INITIAL_GAME_STATE} from '../data/constants';
+import {INITIAL_GAME_STATE, GameParam} from '../data/constants';
 import {getResultScores} from '../modules/get-result-scores';
 
 export default class GameModel {
@@ -35,6 +35,14 @@ export default class GameModel {
 
   restartGame() {
     this._gameState = Object.assign({}, INITIAL_GAME_STATE);
+  }
+
+  setVictory() {
+    this._gameState.isGameWon = true;
+  }
+
+  isNextLevelExist() {
+    return this._gameState.questionNum !== GameParam.QUESTIONS_TOTAL_NUM;
   }
 
   decreaseTimer() {

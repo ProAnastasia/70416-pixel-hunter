@@ -1,18 +1,31 @@
-import {resetGameState} from '../modules/change-game-state';
-import showScreen from '../modules/show-screen';
-import {getResultScores} from '../modules/get-result-scores';
-
+import {ScreenName} from '../data/constants';
+import Application from '../application';
+import HeaderView from '../views/header-view';
 import StatisticsView from '../views/statistics-view';
-import greeting from "./greeting-screen";
 
-export default (gameState) => {
-  const totalScores = getResultScores(gameState.answers, gameState.lives);
-  const screen = new StatisticsView(gameState, totalScores);
+export default class StatisticsScreen {
+  constructor(gameState, total) {
+    this.screenContent = new StatisticsView(gameState, total);
+    this.header = new HeaderView();
+    this.content = this.renderContent();
+  }
 
-  screen.onBackButtonClick = () => {
-    resetGameState(gameState);
-    showScreen(greeting);
-  };
+  get element() {
+    return this.content;
+  }
 
-  return screen;
-};
+  renderContent() {
+    const container = document.createElement(`div`);
+
+    container.appendChild(this.header.element);
+    container.appendChild(this.screenContent.element);
+
+    return container;
+  }
+
+  init() {
+    this.header.onBackButtonClick = () => {
+      Application.showScreen(ScreenName.GREETING);
+    };
+  }
+}

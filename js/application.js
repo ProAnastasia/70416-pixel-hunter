@@ -1,4 +1,5 @@
-import {ScreenName} from './data/constants';
+import {ScreenName, DATA_SOURCE} from './data/constants';
+import {loadData} from './utils/utils';
 import IntroScreen from './screens/intro-screen';
 import GreetingScreen from './screens/greeting-screen';
 import RulesScreen from './screens/rules-screen';
@@ -12,6 +13,8 @@ const screens = {
   [ScreenName.GREETING]: GreetingScreen,
   [ScreenName.RULES]: RulesScreen
 };
+
+let loadedData;
 
 export default class Application {
   static showStatistics(gameState, total) {
@@ -39,5 +42,13 @@ export default class Application {
 
     currentScreen.init();
     showScreen(currentScreen.element);
+  }
+
+  static loadData() {
+    loadData(DATA_SOURCE)
+        .then((data) => loadedData = data)
+        .catch((error) => {
+          throw new Error(error);
+        });
   }
 }

@@ -67,3 +67,5 @@ export const AnswerType = {
   SLOW: `slow`,
   UNKNOWN: `unknown`
 };
+
+export const DATA_SOURCE = `https://es.dump.academy/pixel-hunter/questions`;

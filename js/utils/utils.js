@@ -85,3 +85,13 @@ export const generateRandomImages = (length, imageType) => {
   return selectedImages;
 };
 
+export const loadData = (source) => {
+  return fetch(source)
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          throw new Error(`${response.status}: ${response.text}`);
+        }
+      });
+};

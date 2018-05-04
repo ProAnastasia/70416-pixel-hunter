@@ -1,14 +1,14 @@
-import {generateRandomImages} from '../utils/utils';
 import AbstractView from './abstract-view';
 import statisticsBar from '../components/statistics-bar';
 import footerTemplate from "../components/footer";
 
 export default class LevelTypeTwoView extends AbstractView {
-  constructor(gameState = {}) {
+  constructor(gameState, data) {
     super();
     this.gameState = gameState;
-    this.title = `Угадайте для каждого изображения фото или рисунок?`;
-    this.images = generateRandomImages(2, ``);
+    this.gameData = data;
+    this.title = this.gameData[`question`];
+    this.images = this.adaptImagesTypes();
     this.onAnswer = this.onAnswer.bind(this);
   }
 
@@ -17,12 +17,21 @@ export default class LevelTypeTwoView extends AbstractView {
             ${footerTemplate}`;
   }
 
+  adaptImagesTypes() {
+    return this.gameData[`answers`].map((image) => {
+      if (image.type === `painting`) {
+        image.type = `paint`;
+      }
+      return image;
+    });
+  }
+
   renderGame() {
     return `<div class="game">
               <p class="game__task">${this.title}</p>
               <form class="game__content">
                 <div class="game__option">
-                  <img src=${this.images[0].src} alt="Option 1" width="468" height="458">
+                  <img src=${this.images[0].image.url} alt="Option 1" width="468" height="458">
                   <label class="game__answer game__answer--photo">
                     <input name="question1" type="radio" value="photo">
                     <span>Фото</span>
@@ -33,7 +42,7 @@ export default class LevelTypeTwoView extends AbstractView {
                   </label>
                 </div>
                 <div class="game__option">
-                  <img src=${this.images[1].src} alt="Option 2" width="468" height="458">
+                  <img src=${this.images[1].image.url} alt="Option 2" width="468" height="458">
                   <label class="game__answer  game__answer--photo">
                     <input name="question2" type="radio" value="photo">
                     <span>Фото</span>

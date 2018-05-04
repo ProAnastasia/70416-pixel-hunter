@@ -41,18 +41,18 @@ describe(`Check score counter`, () => {
   });
 
   it(`should return 1150 scores if user answers are not fast/slow and 3 lives`, () => {
-    assert.equal(getResultScores(averageAnswers, 3), 1150);
+    assert.equal(getResultScores(averageAnswers, 4), 1150);
   });
 
   it(`should return 1650 scores if user answers are fast and lives are full`, () => {
-    assert.equal(getResultScores(fastAnswers, 3), 1650);
+    assert.equal(getResultScores(fastAnswers, 4), 1650);
   });
 
   it(`should return 650 scores if user answers are slow and lives are full`, () => {
-    assert.equal(getResultScores(slowAnswers, 3), 650);
+    assert.equal(getResultScores(slowAnswers, 4), 650);
   });
 
   it(`should return 1100 scores if user answers are fast/slow and lives are full`, () => {
-    assert.equal(getResultScores(differentAnswers, 3), 1100);
+    assert.equal(getResultScores(differentAnswers, 4), 1100);
   });
 });

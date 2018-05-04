@@ -1,4 +1,3 @@
-import {generateRandomNumber} from '../utils/utils';
 import {ScreenName, GameParam, AnswerType} from '../data/constants';
 import HeaderView from '../views/header-view';
 import LevelTypeOne from '../views/level-type-1-view';
@@ -6,14 +5,21 @@ import LevelTypeTwo from '../views/level-type-2-view';
 import LevelTypeThree from '../views/level-type-3-view';
 import Application from '../application';
 
-const levelViews = [LevelTypeOne, LevelTypeTwo, LevelTypeThree];
-const RandomLevel = levelViews[generateRandomNumber(0, levelViews.length)];
+/**
+ * enum for views
+ * @type {Function}
+ */
+const LevelView = {
+  [`tinder-like`]: LevelTypeOne,
+  [`two-of-two`]: LevelTypeTwo,
+  [`one-of-three`]: LevelTypeThree
+};
 
 export default class GameScreen {
   constructor(model) {
     this.model = model;
     this.header = new HeaderView(this.model.gameState);
-    this.screenContent = new RandomLevel(this.model.gameState);
+    this.screenContent = this.selectView();
     this.content = document.createElement(`div`);
     this.content.appendChild(this.header.element);
     this.content.appendChild(this.screenContent.element);
@@ -23,6 +29,15 @@ export default class GameScreen {
 
   get element() {
     return this.content;
+  }
+
+  selectView() {
+    const {gameData, gameState} = this.model;
+    const index = gameState.questionNum === GameParam.QUESTIONS_TOTAL_NUM ? GameParam.QUESTIONS_TOTAL_NUM - 1 : gameState.questionNum;
+    const currentQuestion = gameData[index];
+    const currentType = currentQuestion.type;
+
+    return new LevelView[currentType](gameState, currentQuestion);
   }
 
   startTimer() {
@@ -68,9 +83,8 @@ export default class GameScreen {
   }
 
   rederNewLevel() {
-    const RandomView = levelViews[generateRandomNumber(0, levelViews.length)];
     const newHeader = new HeaderView(this.model.gameState);
-    const newLevel = new RandomView(this.model.gameState);
+    const newLevel = this.selectView();
 
     this.content.replaceChild(newHeader.element, this.header.element);
     this.content.replaceChild(newLevel.element, this.screenContent.element);

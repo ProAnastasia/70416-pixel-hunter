@@ -25,7 +25,7 @@ export default class Application {
   }
 
   static showGame(player) {
-    const model = new GameModel(player);
+    const model = new GameModel(player, loadedData);
     const gameScreen = new GameScreen(model);
 
     gameScreen.init();
@@ -46,7 +46,9 @@ export default class Application {
 
   static loadData() {
     loadData(DATA_SOURCE)
-        .then((data) => loadedData = data)
+        .then(function (data) {
+          loadedData = data;
+        })
         .catch((error) => {
           throw new Error(error);
         });

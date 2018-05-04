@@ -1,15 +1,15 @@
-import {generateRandomImages} from '../utils/utils';
 import AbstractView from './abstract-view';
 import statisticsBar from '../components/statistics-bar';
 import footerTemplate from "../components/footer";
 
 export default class LevelTypeOneView extends AbstractView {
-  constructor(gameState = {}) {
+  constructor(gameState, data) {
     super();
     this.gameState = gameState;
-    this.title = `Угадай, фото или рисунок?`;
-    this.images = generateRandomImages(1, ``);
-    this.type = this.images[0].type;
+    this.gameData = data;
+    this.title = this.gameData[`question`];
+    this.images = this.gameData.answers;
+    this.type = this.images[0].type === `painting` ? `paint` : this.images[0].type;
     this.onAnswer = this.onAnswer.bind(this);
   }
 
@@ -28,7 +28,7 @@ export default class LevelTypeOneView extends AbstractView {
              <p class="game__task">${this.title}</p>
               <form class="game__content  game__content--wide">
                 <div class="game__option">
-                  <img src=${this.images[0].src} alt="Option 1" width="705" height="455">
+                  <img src=${this.images[0].image.url} alt="Option 1" width="705" height="455">
                   <label class="game__answer  game__answer--photo">
                     <input name="question1" type="radio" value="photo">
                     <span>Фото</span>
@@ -51,7 +51,6 @@ export default class LevelTypeOneView extends AbstractView {
     answerButtons.forEach((answerButton) => {
       answerButton.addEventListener(`change`, (e) => {
         const isAnswerCorrect = e.target.value === this.type;
-
         this.onAnswer(isAnswerCorrect);
       });
     });

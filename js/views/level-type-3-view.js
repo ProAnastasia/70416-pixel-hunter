@@ -1,20 +1,34 @@
-import {generateRandomImages} from '../utils/utils';
 import AbstractView from './abstract-view';
 import statisticsBar from '../components/statistics-bar';
 import footerTemplate from "../components/footer";
 
 export default class LevelTypeThreeView extends AbstractView {
-  constructor(gameState = {}) {
+  constructor(gameState, data) {
     super();
     this.gameState = gameState;
-    this.title = `Найдите рисунок среди изображений`;
-    this.images = generateRandomImages(3, `paint`);
+    this.gameData = data;
+    this.title = this.gameData[`question`];
+    this.images = this.gameData[`answers`];
+    this.type = this.getRequiredType();
     this.onAnswer = this.onAnswer.bind(this);
   }
 
   get template() {
     return `${this.renderGame()}
             ${footerTemplate}`;
+  }
+
+  getRequiredType() {
+    const savedTypes = {
+      [`photo`]: 0,
+      [`painting`]: 0
+    };
+
+    this.images.forEach((image) => {
+      savedTypes[image.type]++;
+    });
+
+    return savedTypes[`photo`] === 1 ? `photo` : `painting`;
   }
 
   renderGame() {
@@ -32,7 +46,7 @@ export default class LevelTypeThreeView extends AbstractView {
   renderOptions() {
     return this.images.map((image) => {
       return `<div class="game__option">
-                <img src=${image.src} alt="Option 1" width="304" height="455">
+                <img src=${image.image.url} alt="Option 1" width="304" height="455">
               </div>`;
     }).join(` `);
   }
@@ -48,8 +62,8 @@ export default class LevelTypeThreeView extends AbstractView {
       answerButton.addEventListener(`click`, (e) => {
         if (e.target.classList.contains(`game__option`)) {
           const imageSrc = e.target.querySelector(`img`).src;
-          const image = this.images.filter((elem) => elem.src === imageSrc)[0];
-          const isCorrectAnswer = image.type === `paint`;
+          const image = this.images.filter((elem) => elem.image.url === imageSrc)[0];
+          const isCorrectAnswer = image.type === this.type;
 
           this.onAnswer(isCorrectAnswer);
         }

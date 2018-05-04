@@ -2,8 +2,9 @@ import {INITIAL_GAME_STATE, GameParam} from '../data/constants';
 import {getResultScores} from '../modules/get-result-scores';
 
 export default class GameModel {
-  constructor(player) {
+  constructor(player, data) {
     this.player = player;
+    this._gameData = data;
     this._gameState = {};
     this.restartGame();
   }
@@ -12,17 +13,21 @@ export default class GameModel {
     return this._gameState;
   }
 
+  get gameData() {
+    return this._gameData;
+  }
+
   decreaseLives() {
-    this._gameState.lives--;
+    this.gameState.lives--;
   }
 
   saveAnswer(answer) {
-    this._gameState.answers[this._gameState.questionNum] = answer;
-    this._gameState.questionNum++;
+    this.gameState.answers[this._gameState.questionNum] = answer;
+    this.gameState.questionNum++;
   }
 
   checkIsDead() {
-    return this._gameState.lives <= 0;
+    return this.gameState.lives <= 0;
   }
 
   restartGame() {
@@ -31,22 +36,22 @@ export default class GameModel {
   }
 
   setVictory() {
-    this._gameState.isGameWon = true;
+    this.gameState.isGameWon = true;
   }
 
   isNextLevelExist() {
-    return this._gameState.questionNum !== GameParam.QUESTIONS_TOTAL_NUM;
+    return this.gameState.questionNum !== GameParam.QUESTIONS_TOTAL_NUM;
   }
 
   decreaseTimer() {
-    this._gameState.timer--;
+    this.gameState.timer--;
   }
 
   stopTimer() {
-    this._gameState.timer = INITIAL_GAME_STATE.timer;
+    this.gameState.timer = INITIAL_GAME_STATE.timer;
   }
 
   getTotalScores() {
-    return getResultScores(this._gameState.answers, this._gameState.lives);
+    return getResultScores(this.gameState.answers, this.gameState.lives);
   }
 }

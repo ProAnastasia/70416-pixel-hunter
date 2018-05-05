@@ -19,10 +19,12 @@ let loadedData;
 export default class Application {
   static showStatistics(model) {
     const player = model.player;
+    const resultsAddress = `${DATA_SOURCE}/stats/${APP_ID}-${player}`;
 
     this.saveResults(model.result, player)
-        .then(() => {
-          const statisticsScreen = new StatisticsScreen(model);
+        .then(() => loadData(resultsAddress))
+        .then(function (data) {
+          const statisticsScreen = new StatisticsScreen([...data]);
 
           statisticsScreen.init();
           showScreen(statisticsScreen.element);

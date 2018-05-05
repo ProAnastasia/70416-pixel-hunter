@@ -119,6 +119,8 @@ export default class GameScreen {
       }
 
       Application.showStatistics(this.model);
+
+      return;
     }
 
     this.changeLevel();

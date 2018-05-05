@@ -23,12 +23,13 @@ export default class GameModel {
   }
 
   get result() {
-    const {totalPoints, lives, answers} = this.gameState;
+    const {lives, answers} = this.gameState;
 
     return {
-      totalPoints,
+      totalPoints: this.getTotalScores(),
       lives,
-      answers: [...answers]
+      answers: [...answers],
+      isGameWon: this.gameState.isGameWon
     };
   }
 

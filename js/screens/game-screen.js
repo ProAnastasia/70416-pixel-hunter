@@ -78,7 +78,7 @@ export default class GameScreen {
       this.rederNewLevel();
       this.startGame();
     } else {
-      Application.showStatistics(this.model.gameState, this.model.getTotalScores());
+      Application.showStatistics(this.model);
     }
   }
 
@@ -118,7 +118,7 @@ export default class GameScreen {
         this.model.setVictory();
       }
 
-      Application.showStatistics(this.model.gameState, this.model.getTotalScores());
+      Application.showStatistics(this.model);
     }
 
     this.changeLevel();

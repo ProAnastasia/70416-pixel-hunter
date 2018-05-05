@@ -68,6 +68,6 @@ export const AnswerType = {
   UNKNOWN: `unknown`
 };
 
-export const DATA_SOURCE = `https://es.dump.academy/pixel-hunter/questions`;
+export const DATA_SOURCE = `https://es.dump.academy/pixel-hunter`;
 export const APP_ID = 70416;
 export const DEFAULT_PLAYER = `Unnamed warrior`;

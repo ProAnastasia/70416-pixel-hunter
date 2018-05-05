@@ -26,3 +26,26 @@ export const loadData = (source) => {
         }
       });
 };
+
+/**
+ * Post data to server
+ * @param {array} data
+ * @param {String} address
+ * @return {Promise}
+ */
+export const saveData = (data, address) => {
+  const options = {
+    method: `POST`,
+    body: JSON.stringify(data),
+    headers: {
+      'Content-Type': `application/json`
+    }
+  };
+
+  return fetch(address, options)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`${response.status}: ${response.text}`);
+        }
+      });
+};

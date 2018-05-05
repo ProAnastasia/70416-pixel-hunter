@@ -1,5 +1,5 @@
-import {ScreenName, DATA_SOURCE} from './data/constants';
-import {loadData} from './utils/utils';
+import {ScreenName, DATA_SOURCE, DEFAULT_PLAYER, APP_ID} from './data/constants';
+import {loadData, saveData} from './utils/utils';
 import IntroScreen from './screens/intro-screen';
 import GreetingScreen from './screens/greeting-screen';
 import RulesScreen from './screens/rules-screen';
@@ -17,11 +17,16 @@ const screens = {
 let loadedData;
 
 export default class Application {
-  static showStatistics(gameState, total) {
-    const statisticsScreen = new StatisticsScreen(gameState, total);
+  static showStatistics(model) {
+    const player = model.player;
 
-    statisticsScreen.init();
-    showScreen(statisticsScreen.element);
+    this.saveResults(model.result, player)
+        .then(() => {
+          const statisticsScreen = new StatisticsScreen(model);
+
+          statisticsScreen.init();
+          showScreen(statisticsScreen.element);
+        });
   }
 
   static showGame(player) {
@@ -45,12 +50,20 @@ export default class Application {
   }
 
   static loadData() {
-    loadData(DATA_SOURCE)
+    const questionsSource = `${DATA_SOURCE}/questions`;
+
+    loadData(questionsSource)
         .then(function (data) {
           loadedData = data;
         })
         .catch((error) => {
           throw new Error(error);
         });
+  }
+
+  static saveResults(data, player = DEFAULT_PLAYER) {
+    const statisticsAddress = `${DATA_SOURCE}/stats/${APP_ID}-${player}`;
+
+    return saveData(data, statisticsAddress);
   }
 }

@@ -3,9 +3,10 @@ import {getResultScores} from '../modules/get-result-scores';
 
 export default class GameModel {
   constructor(player, data) {
-    this.player = player;
+    this._player = player;
     this._gameData = data;
     this._gameState = {};
+    this._result = {};
     this.restartGame();
   }
 
@@ -15,6 +16,20 @@ export default class GameModel {
 
   get gameData() {
     return this._gameData;
+  }
+
+  get player() {
+    return this._player;
+  }
+
+  get result() {
+    const {totalPoints, lives, answers} = this.gameState;
+
+    return {
+      totalPoints,
+      lives,
+      answers: [...answers]
+    };
   }
 
   decreaseLives() {

@@ -80,6 +80,5 @@ export default class LevelTypeTwoView extends AbstractView {
     });
   }
 
-  // eslint-disable-next-line no-unused-vars
-  onAnswer(areAnswersCorrect) {}
+  onAnswer() {}
 }

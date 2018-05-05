@@ -56,6 +56,5 @@ export default class LevelTypeOneView extends AbstractView {
     });
   }
 
-  // eslint-disable-next-line no-unused-vars
-  onAnswer(isAnswerCorrect) {}
+  onAnswer() {}
 }

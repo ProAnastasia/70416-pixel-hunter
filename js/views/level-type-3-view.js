@@ -71,6 +71,5 @@ export default class LevelTypeThreeView extends AbstractView {
     });
   }
 
-  // eslint-disable-next-line no-unused-vars
-  onAnswer(isCorrectAnswer) {}
+  onAnswer() {}
 }

@@ -56,17 +56,15 @@ export default class LevelTypeThreeView extends AbstractView {
   }
 
   bind() {
-    const answerButtons = [...this.element.querySelectorAll(`.game__option`)];
+    const answerButtons = [...this.element.querySelectorAll(`.game__option img`)];
 
     answerButtons.forEach((answerButton) => {
       answerButton.addEventListener(`click`, (e) => {
-        if (e.target.classList.contains(`game__option`)) {
-          const imageSrc = e.target.querySelector(`img`).src;
-          const image = this.images.filter((elem) => elem.image.url === imageSrc)[0];
-          const isCorrectAnswer = image.type === this.type;
+        const imageSrc = e.target.src;
+        const image = this.images.filter((elem) => elem.image.url === imageSrc)[0];
+        const isCorrectAnswer = image.type === this.type;
 
-          this.onAnswer(isCorrectAnswer);
-        }
+        this.onAnswer(isCorrectAnswer);
       });
     });
   }
